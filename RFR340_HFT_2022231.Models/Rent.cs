@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RFR340_HFT_2022231.Models
 {
-    class Rent
+    public class Rent
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
