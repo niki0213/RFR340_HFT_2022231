@@ -21,6 +21,7 @@ namespace RFR340_HFT_2022231.Models
         public string Author { get; set; }
 
         public DateTime Publication { get; set; }
+        public virtual ICollection<Rent> Rented { get; set; }
 
         public Books()
         {
