@@ -19,7 +19,7 @@ namespace RFR340_HFT_2022231.Models
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public virtual Books Books { get; set; }
-        public virtual ICollection<Person> Person { get; set; }
+        public virtual Person Person { get; set; }
         public Rent()
         {
 
