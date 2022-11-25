@@ -21,7 +21,11 @@ namespace RFR340_HFT_2022231.Repository
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Books>()
+                .HasOne(b => b.Publisher)
+                .WithMany(p => p.Books)
+                .HasForeignKey(b => b.PublisherID)
+                .OnDelete(DeleteBehavior.Cascade);
             
 
             modelBuilder.Entity<Person>()
