@@ -9,6 +9,15 @@ namespace RFR340_HFT_2022231.Repository
         public DbSet<Books> Books { get; set; }
         public DbSet<Rent> Rent { get; set; }
         public DbSet<Person> Person { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder builder)
+        {
+            if (builder.IsConfigured)
+            {
+                builder.UseInMemoryDatabase("Library")
+                .UseLazyLoadingProxies();
+            }
+        }
       
     }
 }
