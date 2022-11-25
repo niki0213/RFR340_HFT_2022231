@@ -14,6 +14,8 @@ namespace RFR340_HFT_2022231.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BookID { get; set; }
 
+        public int PublisherID { get; set; }
+
         [StringLength(150)]
         public string Title { get; set; }
 
@@ -23,6 +25,7 @@ namespace RFR340_HFT_2022231.Models
         public DateTime Publication { get; set; }
         public virtual ICollection<Rent> Rent { get; set; }
         public virtual ICollection<Person> Person { get; set; }
+        public virtual Publisher Publisher { get; set; }
 
         public Books()
         {
