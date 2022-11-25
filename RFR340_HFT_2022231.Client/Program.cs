@@ -1,4 +1,8 @@
-﻿using System;
+﻿using RFR340_HFT_2022231.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 
 namespace RFR340_HFT_2022231.Client
 {
@@ -6,7 +10,7 @@ namespace RFR340_HFT_2022231.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
         }
     }
 }

@@ -12,6 +12,7 @@ namespace RFR340_HFT_2022231.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [StringLength(5)]
         public int RentID { get; set; }
 
         public int BookID { get; set; }

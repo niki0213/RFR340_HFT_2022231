@@ -16,6 +16,7 @@ namespace RFR340_HFT_2022231.Models
         
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [StringLength(5)]
         public int PublisherID { get; set; }
         [StringLength(50)]
         public string Name { get; set; }

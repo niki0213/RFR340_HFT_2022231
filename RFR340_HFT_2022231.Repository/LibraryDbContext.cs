@@ -5,12 +5,16 @@ using RFR340_HFT_2022231.Models;
 
 namespace RFR340_HFT_2022231.Repository
 {
-    public class LibaryDbContext : DbContext
+    public class LibraryDbContext : DbContext
     {
         public DbSet<Books> Books { get; set; }
         public DbSet<Rent> Rent { get; set; }
         public DbSet<Person> Person { get; set; }
 
+        public LibraryDbContext()
+        {
+            this.Database.EnsureCreated();
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             if (builder.IsConfigured)
@@ -52,7 +56,26 @@ namespace RFR340_HFT_2022231.Repository
 
 
 
-
+            modelBuilder.Entity<Books>().HasData(new Books[]
+                    {
+                        new Books("71606#Harry Potter and the Philosopher's Stone#J. K. Rowling#1997#38605")
+                    }
+                );
+            modelBuilder.Entity<Person>().HasData(new Person[]
+                    {
+                        new Person("19085#Robbie#Miller#93513655070")
+                    }
+                );
+            modelBuilder.Entity<Publisher>().HasData(new Publisher[]
+                    {
+                        new Publisher("38605#Bloomsbury")
+                    }
+                );
+            modelBuilder.Entity<Rent>().HasData(new Rent[]
+                    {
+                        new Rent("19085#Robbie#Miller#93513655070")
+                    }
+                );
 
 
         }
