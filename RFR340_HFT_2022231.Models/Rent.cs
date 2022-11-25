@@ -24,5 +24,17 @@ namespace RFR340_HFT_2022231.Models
         {
 
         }
+
+        public Rent(string s)
+        {
+            string[] t = s.Split('#');
+            RentID = int.Parse(t[0]);
+            BookID = int.Parse(t[1]);
+            PersonID = int.Parse(t[2]);
+            string[] dates = t[3].Split('.');
+            string[] dates2 = t[4].Split('.');
+            Start = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2]));
+            End = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2]));
+        }
     }
 }
