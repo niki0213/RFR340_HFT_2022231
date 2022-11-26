@@ -7,7 +7,7 @@ using RFR340_HFT_2022231.Models;
 
 namespace RFR340_HFT_2022231.Logic
 {
-    internal interface IPersonLogic
+    public interface IPersonLogic
     {
         void Create(Person item);
         void Delete(int id);

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RFR340_HFT_2022231.Logic
 {
-    public class BookLogic
+    public class BookLogic: IBookLogic
     {
         IRepository<Books> repo;
 

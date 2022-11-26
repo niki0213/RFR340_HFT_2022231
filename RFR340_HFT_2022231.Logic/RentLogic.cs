@@ -6,7 +6,7 @@ using RFR340_HFT_2022231.Repository;
 
 namespace RFR340_HFT_2022231.Logic
 {
-    public class RentLogic
+    public class RentLogic: IRentLogic
     {
         IRepository<Rent> repo;
 

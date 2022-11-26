@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RFR340_HFT_2022231.Logic
 {
-    internal interface IPublisherLogic
+    public interface IPublisherLogic
     {
         void Create(Publisher item);
         void Delete(int id);

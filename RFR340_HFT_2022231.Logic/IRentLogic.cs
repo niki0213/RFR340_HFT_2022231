@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RFR340_HFT_2022231.Logic
 {
-    internal interface IRentLogic
+    public interface IRentLogic
     {
         void Create(Rent item);
         void Delete(int id);
