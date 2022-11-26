@@ -13,15 +13,12 @@ namespace RFR340_HFT_2022231.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [StringLength(5)]
         public int BookID { get; set; }
 
-       
-
-        [StringLength(150)]
+        [MaxLength(250)]
         public string Title { get; set; }
 
-        [StringLength(100)]
+        [MaxLength(100)]
         public string Author { get; set; } 
         public int PublicationYear { get; set; }
         public int PublisherID { get; set; }
@@ -41,7 +38,7 @@ namespace RFR340_HFT_2022231.Models
             BookID = int.Parse(t[0]);
             Title = t[1];
             Author = t[2];
-            PublicationYear =int.Parse( t[3]);
+            PublicationYear = int.Parse(t[3]);
             PublisherID = int.Parse(t[4]);
         }
     }

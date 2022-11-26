@@ -14,14 +14,12 @@ namespace RFR340_HFT_2022231.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [StringLength(5)]
         public int PersonID { get; set; }
-        [StringLength(30)]
+        [StringLength(50)]
         public string FirstName { get; set; }
-        [StringLength(30)]
+        [StringLength(50)]
         public string LastName { get; set; }
-        [StringLength(11)]
-        public int phone { get; set; }
+        public string phone { get; set; }
         public virtual ICollection<Books> Books { get; set; }
         public virtual ICollection<Rent> Rent { get; set; }
 
@@ -35,7 +33,9 @@ namespace RFR340_HFT_2022231.Models
             PersonID = int.Parse(t[0]);
             FirstName = t[1];
             LastName = t[2];
-            phone = int.Parse(t[3]);
+            phone = t[3];
+
+
         }
     }
 }

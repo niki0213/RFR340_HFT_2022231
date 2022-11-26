@@ -16,9 +16,8 @@ namespace RFR340_HFT_2022231.Models
         
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [StringLength(5)]
         public int PublisherID { get; set; }
-        [StringLength(50)]
+        [StringLength(100)]
         public string Name { get; set; }
 
         public virtual ICollection<Books> Books { get; set; }
@@ -30,7 +29,7 @@ namespace RFR340_HFT_2022231.Models
             string[] t = s.Split('#');
             PublisherID = int.Parse(t[0]);
             Name = t[1];
-          
+
         }
 
     }

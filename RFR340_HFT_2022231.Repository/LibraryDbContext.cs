@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Data;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using RFR340_HFT_2022231.Models;
 
@@ -12,11 +10,14 @@ namespace RFR340_HFT_2022231.Repository
         public DbSet<Rent> Rent { get; set; }
         public DbSet<Person> Person { get; set; }
         public DbSet<Publisher> Publisher { get; set; }
-
+        public LibraryDbContext()
+        {
+            this.Database.EnsureCreated();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            if (builder.IsConfigured)
+            if (!builder.IsConfigured)
             {
                 builder.UseInMemoryDatabase("Library")
                 .UseLazyLoadingProxies();
@@ -58,12 +59,11 @@ namespace RFR340_HFT_2022231.Repository
             modelBuilder.Entity<Books>().HasData(new Books[]
                     {
                          new Books("71606#Harry Potter and the Philosopher's Stone#J. K. Rowling#1997#38605"),
-                         new Books("71606#Harry Potter and the Philosopher's Stone#J. K. Rowling#1997#38605"),
-                         new Books("71606#Harry Potter and the Philosopher's Stone#J. K. Rowling#1997#38605"),
-                         new Books("71606#Harry Potter and the Philosopher's Stone#J. K. Rowling#1997#38605"),
+                         new Books("71607#Harry Potter and the Philosopher's Stone#J. K. Rowling#1997#38605"),
+                         new Books("71608#Harry Potter and the Philosopher's Stone#J. K. Rowling#1997#38605"),
+                         new Books("71609#Harry Potter and the Philosopher's Stone#J. K. Rowling#1997#38605"),
                     }
                 );
-            var item = this.Books.ToArray();
             modelBuilder.Entity<Person>().HasData(new Person[]
                     {
                         new Person("19085#Robbie#Miller#93513655070")
@@ -76,7 +76,7 @@ namespace RFR340_HFT_2022231.Repository
                 );
             modelBuilder.Entity<Rent>().HasData(new Rent[]
                     {
-                        new Rent("19085#Robbie#Miller#93513655070")
+                        new Rent("2001#71606#19085#2022.02.13#2022.05.16")
                     }
                 );
 
