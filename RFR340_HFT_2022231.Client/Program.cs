@@ -19,11 +19,12 @@ namespace RFR340_HFT_2022231.Client
                 Console.Write("Enter the Book's title: ");
                 string title = Console.ReadLine();
                 Console.Write("Enter the Books's' author: ");
-                string lname = Console.ReadLine();
+                string a = Console.ReadLine();
                 Console.Write("Enter the Book's publication year: ");
                 int year = int.Parse(Console.ReadLine());
                 Console.Write("Enter the Book's publisher id: ");
                 int id = int.Parse(Console.ReadLine());
+                rest.Post(new Books() { Title = title, Author = a, PublicationYear = year, PublisherID = id }, "books");
             }
             else if (entity == "Rent")
             {
@@ -32,8 +33,9 @@ namespace RFR340_HFT_2022231.Client
                 Console.Write("Enter the PersonID: ");
                 int person = int.Parse(Console.ReadLine());
                 Console.Write("Enter the Book's publication year: ");
-               
+                rest.Post(new Rent() { BookID = book, PersonID = person },"rent");
             }
+        
             else if (entity == "Publisher")
             {
                 Console.Write("Enter the publisher's name: ");
@@ -48,6 +50,7 @@ namespace RFR340_HFT_2022231.Client
                 string lname = Console.ReadLine();
                 Console.Write("Enter the Persons's phone: ");
                 string phone = Console.ReadLine();
+                rest.Post(new Person() { FirstName = fname, LastName = lname, phone = phone }, "person");
             }
 
         }
@@ -85,6 +88,7 @@ namespace RFR340_HFT_2022231.Client
                     Console.WriteLine(item.PublisherID + " : " + item.Name );
                 }
             }
+            Console.ReadLine();
         }
         static void Update(string entity)
         {
@@ -103,7 +107,7 @@ namespace RFR340_HFT_2022231.Client
                 Console.Write("Enter rent's id to update: ");
                 int id = int.Parse(Console.ReadLine());
                 Rent one = rest.Get<Rent>(id, "rent");
-                Console.Write($"New end date: ");
+                Console.Write($"New bookID: ");
                 string[] dates = Console.ReadLine().Split('.');
                 one.End = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2]));
                 rest.Put(one, "rent");
@@ -116,7 +120,7 @@ namespace RFR340_HFT_2022231.Client
                 Console.Write($"New phone number [old: {one.phone}]: ");
                 string phone = Console.ReadLine();
                 one.phone = phone;
-                rest.Put(one, "rent");
+                rest.Put(one, "person");
             }
             else if (entity == "Publisher")
             {
@@ -125,7 +129,7 @@ namespace RFR340_HFT_2022231.Client
                 Publisher one = rest.Get<Publisher>(id, "publisher");
                 Console.Write($"New name [old: {one.Name}]: ");
                 one.Name = Console.ReadLine();
-                rest.Put(one, "rent");
+                rest.Put(one, "publisher");
             }
         }
         static void Delete(string entity)

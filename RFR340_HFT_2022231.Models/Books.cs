@@ -17,10 +17,10 @@ namespace RFR340_HFT_2022231.Models
         [Range(1000, 9999)]
         public int BookID { get; set; }
         [Required]
-        [MaxLength(250)]
+        [StringLength(250)]
         public string Title { get; set; }
 
-        [MaxLength(100)]
+        [StringLength(100)]
         public string Author { get; set; }
 
         public int PublicationYear { get; set; }

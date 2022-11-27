@@ -74,11 +74,11 @@ namespace RFR340_HFT_2022231.Repository
                 );
             modelBuilder.Entity<Person>().HasData(new Person[]
                     {
-                        new Person("101#Robbie#Miller#1234567890"),
-                        new Person("102#Robbie#Miller#1234567890"),
-                        new Person("104#Robbie#Miller#1234567890"),
-                        new Person("105#Robbie#Miller#1234567890"),
-                        new Person("106#Robbie#Miller#1234567890")
+                        new Person("101#Robbie#Miller#3645718270"),
+                        new Person("102#Camilla#Donata#3647584920"),
+                        new Person("104#Kevin#Mahaut#3682936152"),
+                        new Person("105#Dalma#Wibke#3637458265"),
+                        new Person("106#Henri#Suse#3682951536")
                     }
                 );
             modelBuilder.Entity<Publisher>().HasData(new Publisher[]

@@ -12,6 +12,7 @@ namespace RFR340_HFT_2022231.Client
     {
         HttpClient client;
 
+
         public RestService(string baseurl, string pingableEndpoint = "swagger")
         {
             bool isOk = false;
@@ -143,7 +144,6 @@ namespace RFR340_HFT_2022231.Client
 
             response.EnsureSuccessStatusCode();
         }
-       
 
     }
     public class RestExceptionInfo

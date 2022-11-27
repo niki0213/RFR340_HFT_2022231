@@ -19,27 +19,27 @@ namespace RFR340_HFT_2022231.Endpoint.Controllers
         [HttpGet]
         public IEnumerable<BookLogic.BookReadCount> BookReadCounter()
         {
-            return this.logic.BookReadCounter();
+            return logic.BookReadCounter();
         }
         [HttpGet("{id}")]
         public IEnumerable<BookLogic.BookInfo> HaveRead(int ID)
         {
-            return this.logic.HaveRead(ID);
+            return logic.HaveRead(ID);
         }
         [HttpGet]
         public IEnumerable<BookLogic.PublisherInfo> PublishedBooks()
         {
-            return this.logic.PublishedBooks();
+            return logic.PublishedBooks();
         }
         [HttpGet]
         public IEnumerable<BookLogic.NotReturned> DidNotReturned()
         {
-            return this.logic.DidNotReturned();
+            return logic.DidNotReturned();
         }
         [HttpGet("{id}")]
         public IEnumerable<BookLogic.RentedIt> RentedBy(int id)
         {
-            return this.logic.RentedBy(id);
+            return logic.RentedBy(id);
         }
     }
 }

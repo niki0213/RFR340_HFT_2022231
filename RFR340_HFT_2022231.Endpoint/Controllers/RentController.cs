@@ -22,35 +22,35 @@ namespace RFR340_HFT_2022231.Endpoint.Controllers
         [HttpGet]
         public IEnumerable<Rent> ReadAll()
         {
-            return this.logic.ReadAll();
+            return logic.ReadAll();
         }
 
         // GET api/<RentController>/5
         [HttpGet("{id}")]
         public Rent Read(int id)
         {
-            return this.logic.Read(id);
+            return logic.Read(id);
         }
 
         // POST api/<RentController>
         [HttpPost]
         public void Create([FromBody] Rent value)
         {
-            this.logic.Create(value);
+            logic.Create(value);
         }
 
         // PUT api/<RentController>/5
         [HttpPut("{id}")]
         public void Update([FromBody] Rent value)
         {
-            this.logic.Update(value);
+            logic.Update(value);
         }
 
         // DELETE api/<RentController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            this.logic.Delete(id);
+            logic.Delete(id);
         }
     }
 }
