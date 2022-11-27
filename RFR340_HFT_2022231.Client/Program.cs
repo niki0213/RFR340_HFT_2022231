@@ -10,8 +10,10 @@ namespace RFR340_HFT_2022231.Client
     {
         static void Main(string[] args)
         {
-            
-            
+            string phone = "12345678900";
+            Console.WriteLine(phone.Length);
+
+
 
 
 

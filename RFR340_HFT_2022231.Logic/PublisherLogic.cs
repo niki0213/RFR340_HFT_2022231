@@ -19,6 +19,10 @@ namespace RFR340_HFT_2022231.Logic
 
         public void Create(Publisher item)
         {
+            if (item.Name.Length < 5)
+            {
+                throw new ArgumentException("The name is too short");
+            }
             this.repo.Create(item);
         }
 

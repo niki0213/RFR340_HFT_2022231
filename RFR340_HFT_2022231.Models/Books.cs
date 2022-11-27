@@ -13,17 +13,19 @@ namespace RFR340_HFT_2022231.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Range(1000, 9999)]
         public int BookID { get; set; }
-
+        [Required]
         [MaxLength(250)]
         public string Title { get; set; }
-
+        [Required]
         [MaxLength(100)]
-        public string Author { get; set; } 
+        public string Author { get; set; }
+        [Required]
         public int PublicationYear { get; set; }
+        [Required]
+        [Range(0, 9)]
         public int PublisherID { get; set; }
-
-       
         public virtual ICollection<Rent> Rent { get; set; }
         public virtual ICollection<Person> Person { get; set; }
         public virtual Publisher Publisher { get; set; }

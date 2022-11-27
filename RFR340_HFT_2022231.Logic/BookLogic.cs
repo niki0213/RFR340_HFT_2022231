@@ -30,6 +30,10 @@ namespace RFR340_HFT_2022231.Logic
 
         public void Create(Books item)
         {
+            if (item.Title.Length < 3)
+            {
+                throw new ArgumentException("The title is too short");
+            }
             this.repo.Create(item);
         }
 

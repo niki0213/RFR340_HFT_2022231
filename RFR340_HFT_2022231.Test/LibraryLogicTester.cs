@@ -124,6 +124,68 @@ namespace RFR340_HFT_2022231.Test
             mockRent.Verify(r => r.Create(Rent), Times.Once);
         }
         [Test]
+        public void CreatePersonshortphonenumber()
+        {
+            var person = new Person()
+            {
+                PersonID = 11,
+                FirstName = "Joe",
+                LastName = "Smith",
+                phone = "11"
+            };
+            try
+            {
+                personLogic.Create(person);
+            }
+            catch 
+            {
+
+                
+            }
+            mockPerson.Verify(r => r.Create(person), Times.Never);
+        }
+        public void CreatePersonshortname()
+        {
+            var person = new Person()
+            {
+                PersonID = 11,
+                FirstName = "Joee",
+                LastName = "Smith",
+                phone = "12345678900"
+            };
+            try
+            {
+                personLogic.Create(person);
+            }
+            catch
+            {
+
+
+            }
+            mockPerson.Verify(r => r.Create(person), Times.Never);
+        }
+        [Test]
+        public void CreateBook()
+        {
+            var book = new Books()
+            {
+                BookID = 1,
+                Title = "A",
+                PublisherID = 1001,
+            };
+            try
+            {
+                bookLogic.Create(book);
+            }
+            catch 
+            {
+
+               
+            }
+            mockBooks.Verify(r => r.Create(book), Times.Never);
+
+        }
+        [Test]
         public void BookReadCounter()
         {
             var actual = logic.BookReadCounter().ToList();
