@@ -16,37 +16,38 @@ namespace RFR340_HFT_2022231.Client
         {
             if (entity == "Books")
             {
-                Books newbook = new Books();
-                Console.Write("Enter the book's title: ");
-                newbook.Title = Console.ReadLine();
-                Console.Write("Enter the book's author: ");
-                newbook.Author = Console.ReadLine();
-                Console.Write("Enter the book's publication year: ");
-                newbook.PublicationYear = int.Parse(Console.ReadLine());
-                Console.Write("Enter enter book's publisherID: ");
-                newbook.PublisherID = int.Parse(Console.ReadLine());
-                rest.Post(newbook, "books");
+                Console.Write("Enter the Book's title: ");
+                string title = Console.ReadLine();
+                Console.Write("Enter the Books's' author: ");
+                string lname = Console.ReadLine();
+                Console.Write("Enter the Book's publication year: ");
+                int year = int.Parse(Console.ReadLine());
+                Console.Write("Enter the Book's publisher id: ");
+                int id = int.Parse(Console.ReadLine());
             }
             else if (entity == "Rent")
             {
-                var newrent = new Rent();
-                Console.Write("Enter the Books ID: ");
-                newrent.BookID = int.Parse(Console.ReadLine());
+                Console.Write("Enter the BookID: ");
+                int book = int.Parse(Console.ReadLine());
                 Console.Write("Enter the PersonID: ");
-                newrent.PersonID = int.Parse(Console.ReadLine());
-                Console.Write("Enter the rents star date in the format of yyyy.mm.dd: ");
-                string[] dates = Console.ReadLine().Split('.');
-                newrent.Start = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2]));
-                Console.Write("Enter the rents end date in the format of yyyy.mm.dd: ");
-                string[] dates2 = Console.ReadLine().Split('.');
-                newrent.End = new DateTime(int.Parse(dates2[0]), int.Parse(dates2[1]), int.Parse(dates2[2]));
-                rest.Post(newrent, "rent");
+                int person = int.Parse(Console.ReadLine());
+                Console.Write("Enter the Book's publication year: ");
+               
             }
             else if (entity == "Publisher")
             {
                 Console.Write("Enter the publisher's name: ");
                 string name =Console.ReadLine();
                 rest.Post(new Publisher() { Name = name },"publisher");
+            }
+            else if (entity == "Person")
+            {
+                Console.Write("Enter the Persons's first name: ");
+                string fname = Console.ReadLine();
+                Console.Write("Enter the Persons's last name: ");
+                string lname = Console.ReadLine();
+                Console.Write("Enter the Persons's phone: ");
+                string phone = Console.ReadLine();
             }
 
         }
@@ -84,7 +85,6 @@ namespace RFR340_HFT_2022231.Client
                     Console.WriteLine(item.PublisherID + " : " + item.Name );
                 }
             }
-            Console.ReadLine();
         }
         static void Update(string entity)
         {
@@ -110,22 +110,21 @@ namespace RFR340_HFT_2022231.Client
             }
             else if (entity == "Person")
             {
-                Console.Write("Enter rent's id to update: ");
+                Console.Write("Enter Person's id to update: ");
                 int id = int.Parse(Console.ReadLine());
-                Rent one = rest.Get<Rent>(id, "rent");
-                Console.Write($"New end date: ");
-                string[] dates = Console.ReadLine().Split('.');
-                one.End = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2]));
+                Person one = rest.Get<Person>(id, "person");
+                Console.Write($"New phone number [old: {one.phone}]: ");
+                string phone = Console.ReadLine();
+                one.phone = phone;
                 rest.Put(one, "rent");
             }
             else if (entity == "Publisher")
             {
-                Console.Write("Enter rent's id to update: ");
+                Console.Write("Enter Publishers's id to update: ");
                 int id = int.Parse(Console.ReadLine());
-                Rent one = rest.Get<Rent>(id, "rent");
-                Console.Write($"New end date: ");
-                string[] dates = Console.ReadLine().Split('.');
-                one.End = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2]));
+                Publisher one = rest.Get<Publisher>(id, "publisher");
+                Console.Write($"New name [old: {one.Name}]: ");
+                one.Name = Console.ReadLine();
                 rest.Put(one, "rent");
             }
         }
@@ -137,8 +136,25 @@ namespace RFR340_HFT_2022231.Client
                 int id = int.Parse(Console.ReadLine());
                 rest.Delete(id, "books");
             }
+            else if (entity == "Rent")
+            {
+                Console.Write("Enter Rent's id to delete: ");
+                int id = int.Parse(Console.ReadLine());
+                rest.Delete(id, "rent");
+            }
+            else if (entity == "Person")
+            {
+                Console.Write("Enter Person's id to delete: ");
+                int id = int.Parse(Console.ReadLine());
+                rest.Delete(id, "person");
+            }
+            else if (entity == "Publisher")
+            {
+                Console.Write("Enter Publisher's id to delete: ");
+                int id = int.Parse(Console.ReadLine());
+                rest.Delete(id, "publisher");
+            }
         }
-
         static void Main(string[] args)
         {
             rest = new RestService("http://localhost:4738/", "swagger");
@@ -172,20 +188,12 @@ namespace RFR340_HFT_2022231.Client
                 .Add("Delete", () => Delete("Publisher"))
                 .Add("Update", () => Update("Publisher"))
                 .Add("Exit", ConsoleMenu.Close);
-            var logicSubMenu = new ConsoleMenu(args, level: 1)
-               .Add("List", () => List("Publisher"))
-               .Add("Create", () => Create("Publisher"))
-               .Add("Delete", () => Delete("Publisher"))
-               .Add("Update", () => Update("Publisher"))
-               .Add("Exit", ConsoleMenu.Close);
-
 
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Books", () => bookSubMenu.Show())
                 .Add("Person", () => personSubMenu.Show())
                 .Add("Rent", () => rentSubMenu.Show())
                 .Add("Publisher", () => publisherSubMenu.Show())
-                .Add("Logic", () => logicSubMenu.Show())
                 .Add("Exit", ConsoleMenu.Close);
 
             menu.Show();

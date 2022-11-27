@@ -66,27 +66,40 @@ namespace RFR340_HFT_2022231.Repository
                          new Books("1006#Harry Potter and the Goblet of Fire #J. K. Rowling#2000#1"),
                          new Books("1007#Harry Potter and the Half-Blood Prince#J. K. Rowling#2003#1"),
                          new Books("1008#Harry Potter and the Deathly Hallows #J. K. Rowling#2005#1"),
-                         new Books("1009#Twilight #J. K. Rowling#2005#1"),
+                         new Books("1009#Twilight #Stephenie Meyer#2005#2"),
+                         new Books("1010#New Moon#Stephenie Meyer#2006#2"),
+                         new Books("1011#Eclipse#Stephenie Meyer#2007#2"),
+                         new Books("1012#Breaking Dawn#Stephenie Meyer#2006#2"),
                     }
                 );
             modelBuilder.Entity<Person>().HasData(new Person[]
                     {
                         new Person("101#Robbie#Miller#1234567890"),
                         new Person("102#Robbie#Miller#1234567890"),
-                        new Person("103#Robbie#Miller#1234567890")
+                        new Person("104#Robbie#Miller#1234567890"),
+                        new Person("105#Robbie#Miller#1234567890"),
+                        new Person("106#Robbie#Miller#1234567890")
                     }
                 );
             modelBuilder.Entity<Publisher>().HasData(new Publisher[]
                     {
-                        new Publisher("1#Bloomsbury")
+                        new Publisher("1#Bloomsbury"),
+                        new Publisher("2#Little, Brown and Company")
                     }
                 );
             modelBuilder.Entity<Rent>().HasData(new Rent[]
                     {
-                        new Rent("11#1346#100#2022.02.13#2022.05.16"),
-                        new Rent("12#1346#100#2022.02.13#2022.05.16"),
-                        new Rent("13#1003#100#2022.02.13#2022.05.16"),
-                        new Rent("14#1346#100#2022.02.13#2022.05.16")
+                        new Rent("11#1008#102#2022.02.13#2022.05.16"),
+                        new Rent("12#1001#101#2022.04.20#2022.05.20"),
+                        new Rent("13#1003#104#2022.03.13#2022.04.02"),
+                        new Rent("14#1007#105#2022.02.01#2022.04.16"),
+                        new Rent("15#1008#104#2022.02.13#2022.05.16"),
+                        new Rent("16#1001#102#2022.02.13#2022.05.16"),
+                        new Rent("17#1004#100#2022.02.13#2022.05.16"),
+                        new Rent("18#1009#104#2022.02.13#2022.05.16"),
+                        new Rent("19#1007#102#2022.02.13#3000.01.01"),
+                        new Rent("20#1003#106#2022.02.13#3000.01.01")
+
                     }
                 );
 

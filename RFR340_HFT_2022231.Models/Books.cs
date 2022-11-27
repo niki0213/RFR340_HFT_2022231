@@ -19,12 +19,12 @@ namespace RFR340_HFT_2022231.Models
         [Required]
         [MaxLength(250)]
         public string Title { get; set; }
-        [Required]
+
         [MaxLength(100)]
         public string Author { get; set; }
-        [Required]
+
         public int PublicationYear { get; set; }
-        [Required]
+
         [Range(0, 9)]
         public int PublisherID { get; set; }
         [JsonIgnore]
