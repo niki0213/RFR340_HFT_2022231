@@ -21,6 +21,7 @@ namespace RFR340_HFT_2022231.Models
         [Required]
         [Range(100,999)]
         public int PersonID { get; set; }
+        [Required]
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         [JsonIgnore]

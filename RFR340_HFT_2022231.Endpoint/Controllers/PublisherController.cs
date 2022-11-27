@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace RFR340_HFT_2022231.Endpoint.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class PublisherController : ControllerBase
     {
