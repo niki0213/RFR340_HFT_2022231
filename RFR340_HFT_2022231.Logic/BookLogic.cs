@@ -8,12 +8,20 @@ using System.Threading.Tasks;
 
 namespace RFR340_HFT_2022231.Logic
 {
-    public class BookLogic: IBookLogic
+    public class BookLogic : IBookLogic
     {
         IRepository<Books> repo;
         IRepository<Rent> rentrepo;
-        IRepository<Person> personrepo;
         IRepository<Publisher> publisherrepo;
+        IRepository<Person> personrepo;
+
+        public BookLogic(IRepository<Books> repo, IRepository<Rent> rentrepo, IRepository<Publisher> publisherrepo, IRepository<Person> personrepo)
+        {
+            this.repo = repo;
+            this.rentrepo = rentrepo;
+            this.publisherrepo = publisherrepo;
+            this.personrepo = personrepo;
+        }
 
         public BookLogic(IRepository<Books> repo)
         {
@@ -47,7 +55,7 @@ namespace RFR340_HFT_2022231.Logic
 
         public IEnumerable<BookReadCount> BookReadCounter()
         {
-            return from x in this.rentrepo.ReadAll()
+            return from x in rentrepo.ReadAll()
                    group x by x.BookID into g
                    join y in repo.ReadAll()
                    on g.Key equals y.BookID
@@ -64,24 +72,60 @@ namespace RFR340_HFT_2022231.Logic
             public int Id { get; set; }
             public string Title { get; set; }
             public int Count { get; set; }
+            public override bool Equals(object obj)
+            {
+                BookReadCount b = obj as BookReadCount;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.Id == b.Id
+                        && this.Title == b.Title
+                        && this.Count == b.Count;
+                }
+            }
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(this.Id, this.Title, this.Count);
+            }
         }
 
         public IEnumerable<BookInfo> HaveRead(int ID)
         {
-            return from x in this.rentrepo.ReadAll()
+            return from x in rentrepo.ReadAll()
                    join b in this.repo.ReadAll()
                    on x.BookID equals b.BookID
-                   where x.PersonID==ID
+                   where x.PersonID == ID
                    select new BookInfo()
                    {
                        ID = x.BookID,
                        Title = b.Title
                    };
+
         }
         public class BookInfo
         {
             public int ID { get; set; }
-            public string Title {  get; set;}
+            public string Title { get; set; }
+            public override bool Equals(object obj)
+            {
+                BookInfo b = obj as BookInfo;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.ID == b.ID
+                        && this.Title == b.Title;
+                }
+            }
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(this.ID, this.Title);
+            }
         }
 
         public IEnumerable<PublisherInfo> PublishedBooks()
@@ -102,17 +146,35 @@ namespace RFR340_HFT_2022231.Logic
             public int ID { get; set; }
             public string Name { get; set; }
             public int BookCount { get; set; }
+            public override bool Equals(object obj)
+            {
+                PublisherInfo b = obj as PublisherInfo;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.ID == b.ID
+                        && this.Name == b.Name
+                        && this.BookCount == b.BookCount;
+                }
+            }
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(this.ID, this.Name, this.BookCount);
+            }
         }
         public IEnumerable<NotReturned> DidNotReturned()
         {
             var g = from p in this.personrepo.ReadAll()
                     join r in this.rentrepo.ReadAll()
                     on p.PersonID equals r.PersonID
-                    where r.End.Year==0
+                    where r.End.Year == 3000
                     select new
                     {
                         p.PersonID,
-                        p.FirstName, 
+                        p.FirstName,
                         p.LastName,
                         p.phone,
                         r.BookID
@@ -127,7 +189,7 @@ namespace RFR340_HFT_2022231.Logic
                        Title = b.Title,
                        PID = p.PersonID,
                        FirstName = p.FirstName,
-                       LastName= p.LastName,
+                       LastName = p.LastName,
                        PhoneNumber = p.phone
                    };
         }
@@ -140,26 +202,49 @@ namespace RFR340_HFT_2022231.Logic
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string PhoneNumber { get; set; }
+            public override bool Equals(object obj)
+            {
+                NotReturned b = obj as NotReturned;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.BID == b.BID
+                        && this.Title == b.Title
+                        && this.PID == b.PID
+                        && this.FirstName == b.FirstName
+                        && this.LastName == b.LastName
+                        && this.PhoneNumber == b.PhoneNumber;
+
+                }
+            }
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(this.BID, this.Title, this.PID, this.FirstName, this.LastName, this.PhoneNumber);
+
+            }
         }
 
         public IEnumerable<RentedIt> RentedBy(int bookid)
         {
-             return from r in this.rentrepo.ReadAll()
-                    join p in this.personrepo.ReadAll()
-                    on r.PersonID equals p.PersonID
-                    where r.BookID==bookid
-                    select new RentedIt()
-                    {
-                        ID= p.PersonID,
-                        FirstName = p.FirstName,
-                        LastName= p.LastName,
-                        PhoneNumber= p.phone
+            return from r in rentrepo.ReadAll()
+                   join p in personrepo.ReadAll()
+                   on r.PersonID equals p.PersonID
+                   where r.BookID == bookid
+                   select new RentedIt()
+                   {
+                       ID = p.PersonID,
+                       FirstName = p.FirstName,
+                       LastName = p.LastName,
+                       PhoneNumber = p.phone
 
-                    };
+                   };
 
-          
+
         }
-
+        
         public class RentedIt
         {
 
@@ -167,10 +252,35 @@ namespace RFR340_HFT_2022231.Logic
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string PhoneNumber { get; set; }
+            public override bool Equals(object obj)
+            {
+                RentedIt b = obj as RentedIt;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.ID == b.ID
+                        && this.FirstName == b.FirstName
+                        && this.LastName == b.LastName
+                        && this.PhoneNumber == b.PhoneNumber;
+
+
+                }
+            }
+                public override int GetHashCode()
+                {
+                    return HashCode.Combine(this.ID, this.FirstName, this.LastName, this.PhoneNumber);
+
+                }
+            
 
         }
+        
+        
 
 
     }
-    
+
 }

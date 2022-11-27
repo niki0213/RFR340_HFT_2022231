@@ -8,7 +8,7 @@ namespace RFR340_HFT_2022231.Logic
 {
     public class RentLogic: IRentLogic
     {
-        IRepository<Rent> repo;
+        public IRepository<Rent> repo;
 
         public RentLogic(IRepository<Rent> repo)
         {
@@ -39,5 +39,6 @@ namespace RFR340_HFT_2022231.Logic
         {
             this.repo.Update(item);
         }
+
     }
 }
