@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace RFR340_HFT_2022231.Models
@@ -24,7 +25,9 @@ namespace RFR340_HFT_2022231.Models
         public string LastName { get; set; }
         [Required]
         public string phone { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Books> Books { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Rent> Rent { get; set; }
 
         public Person()

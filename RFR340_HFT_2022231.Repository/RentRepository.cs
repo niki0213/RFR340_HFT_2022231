@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace RFR340_HFT_2022231.Repository
 {
-    public class RentReporitory : Repository<Rent>, IRepository<Rent>
+    public class RentRepository : Repository<Rent>, IRepository<Rent>
     {
-        public RentReporitory(LibraryDbContext Library) : base(Library)
+        public RentRepository(LibraryDbContext Library) : base(Library)
         {
         }
 

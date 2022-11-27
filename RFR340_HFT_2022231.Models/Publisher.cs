@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 
@@ -21,7 +22,7 @@ namespace RFR340_HFT_2022231.Models
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
-
+        [JsonIgnore]
         public virtual ICollection<Books> Books { get; set; }
         public Publisher()
         {

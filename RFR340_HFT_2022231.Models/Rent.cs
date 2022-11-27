@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace RFR340_HFT_2022231.Models
@@ -22,7 +23,9 @@ namespace RFR340_HFT_2022231.Models
         public int PersonID { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
+        [JsonIgnore]
         public virtual Books Books { get; set; }
+        [JsonIgnore]
         public virtual Person Person { get; set; }
         public Rent()
         {

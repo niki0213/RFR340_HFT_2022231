@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace RFR340_HFT_2022231.Models
@@ -26,8 +27,11 @@ namespace RFR340_HFT_2022231.Models
         [Required]
         [Range(0, 9)]
         public int PublisherID { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Rent> Rent { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Person> Person { get; set; }
+        [JsonIgnore]
         public virtual Publisher Publisher { get; set; }
 
         public Books()
