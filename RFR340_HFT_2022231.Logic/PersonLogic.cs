@@ -19,7 +19,7 @@ namespace RFR340_HFT_2022231.Logic
 
         public void Create(Person item)
         {
-            if (item.phone.Length<10)
+            if (item.phone.Length!=10)
             {
                 throw new ArgumentException("The phone number isn't valid");
             }

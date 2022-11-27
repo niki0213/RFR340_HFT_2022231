@@ -144,14 +144,15 @@ namespace RFR340_HFT_2022231.Test
             }
             mockPerson.Verify(r => r.Create(person), Times.Never);
         }
+        [Test]
         public void CreatePersonshortname()
         {
             var person = new Person()
             {
                 PersonID = 11,
-                FirstName = "Joee",
+                FirstName = "J",
                 LastName = "Smith",
-                phone = "12345678900"
+                phone = "1234567890"
             };
             try
             {
@@ -163,6 +164,27 @@ namespace RFR340_HFT_2022231.Test
 
             }
             mockPerson.Verify(r => r.Create(person), Times.Never);
+        }
+        [Test]
+        public void CreatePerson()
+        {
+            var person = new Person()
+            {
+                PersonID = 11,
+                FirstName = "Joe",
+                LastName = "Smith",
+                phone = "1234567890"
+            };
+            try
+            {
+                personLogic.Create(person);
+            }
+            catch
+            {
+
+
+            }
+            mockPerson.Verify(r => r.Create(person), Times.Once);
         }
         [Test]
         public void CreateBook()
@@ -185,6 +207,42 @@ namespace RFR340_HFT_2022231.Test
             mockBooks.Verify(r => r.Create(book), Times.Never);
 
         }
+        [Test]
+        public void CreatPublisherTooShort()
+        {
+            var publisher = new Publisher()
+            {
+                PublisherID = 1,
+                Name = "A",
+               
+            };
+            try
+            {
+                publisherLogic.Create(publisher);
+            }
+            catch
+            {
+
+
+            }
+            mockPublisher.Verify(r => r.Create(publisher), Times.Never);
+
+        }
+        [Test]
+        public void CreatPublisher()
+        { 
+            var publisher = new Publisher()
+            {
+                PublisherID = 1,
+                Name = "ABCDE",
+
+            };
+
+            publisherLogic.Create(publisher);
+            mockPublisher.Verify(r => r.Create(publisher), Times.Once);
+
+        }
+
         [Test]
         public void BookReadCounter()
         {

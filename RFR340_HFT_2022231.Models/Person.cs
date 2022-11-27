@@ -23,7 +23,6 @@ namespace RFR340_HFT_2022231.Models
         [StringLength(50)]
         public string LastName { get; set; }
         [Required]
-        [StringLength(10)]
         public string phone { get; set; }
         public virtual ICollection<Books> Books { get; set; }
         public virtual ICollection<Rent> Rent { get; set; }
