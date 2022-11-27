@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RFR340_HFT_2022231.Logic;
-using RFR340_HFT_2022231.Models;
-using static RFR340_HFT_2022231.Logic.BookLogic;
 using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace RFR340_HFT_2022231.Endpoint.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class LogicController : ControllerBase
     {
@@ -18,31 +16,30 @@ namespace RFR340_HFT_2022231.Endpoint.Controllers
         {
             this.logic = logic;
         }
-        public Books Read(int id)
-        {
-            return this.logic.Read(id);
-        }
-
-        public IEnumerable<BookReadCount> BookReadCounter()
+        [HttpGet]
+        public IEnumerable<BookLogic.BookReadCount> BookReadCounter()
         {
             return this.logic.BookReadCounter();
         }
-        public IEnumerable<BookInfo> HaveRead(int ID)
+        [HttpGet("{id}")]
+        public IEnumerable<BookLogic.BookInfo> HaveRead(int ID)
         {
             return this.logic.HaveRead(ID);
         }
-        public IEnumerable<PublisherInfo> PublishedBooks()
+        [HttpGet]
+        public IEnumerable<BookLogic.PublisherInfo> PublishedBooks()
         {
             return this.logic.PublishedBooks();
         }
-        public IEnumerable<NotReturned> DidNotReturned()
+        [HttpGet]
+        public IEnumerable<BookLogic.NotReturned> DidNotReturned()
         {
             return this.logic.DidNotReturned();
         }
-        public IEnumerable<RentedIt> RentedBy(int bookid)
+        [HttpGet("{id}")]
+        public IEnumerable<BookLogic.RentedIt> RentedBy(int id)
         {
-            return this.logic.RentedBy(bookid);
+            return this.logic.RentedBy(id);
         }
-
     }
 }
