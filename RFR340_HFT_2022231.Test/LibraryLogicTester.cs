@@ -22,7 +22,6 @@ namespace RFR340_HFT_2022231.Test
             {
                 new Rent("1001#1#111#2000.01.01#2000.02.02"),
                 new Rent("1002#2#112#2000.01.01#2000.02.02"),
-                new Rent("1003#1#113#2000.01.01#2000.02.02"),
 
             }.AsQueryable());
             rentLogic = new RentLogic(mockRent.Object);
@@ -74,8 +73,18 @@ namespace RFR340_HFT_2022231.Test
                new Publisher("12#B"),
                new Publisher("13#C"),
             }.AsQueryable());
-            personLogic = new PersonLogic(mockPerson.Object);
+            publisherLogic = new PublisherLogic(mockPublisher.Object);
         }
+        [Test]
+        public void CreateRent()
+        {
+            var Rent = new Rent("1003#1#113#2000.01.01#2000.02.02");
+            rentLogic.Create(Rent);
+
+            mockRent.Verify(r => r.Create(Rent), Times.Once);
+        }
+
+
 
     }
 }
