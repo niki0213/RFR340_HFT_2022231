@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace RFR340_HFT_2022231.Repository
 {
-    public class BooksRepository: Repository<Books>, IRepository<Books>
+    public class BookRepository : Repository<Book>, IRepository<Book>
     {
-        public BooksRepository(LibraryDbContext Library) : base(Library)
+        public BookRepository(LibraryDbContext Library) : base(Library)
         {
         }
 
-        public override Books Read(int id)
+        public override Book Read(int id)
         {
-            return Library.Books.FirstOrDefault(t => t.BookID == id);
+            return Library.Book.FirstOrDefault(t => t.BookID == id);
         }
 
-        public override void Update(Books book)
+        public override void Update(Book book)
         {
             var old = Read(book.BookID);
             foreach (var prop in old.GetType().GetProperties())
