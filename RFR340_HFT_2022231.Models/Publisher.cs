@@ -14,7 +14,7 @@ namespace RFR340_HFT_2022231.Models
 {
     public class Publisher
     {
-        
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Range(0, 9)]
@@ -23,7 +23,7 @@ namespace RFR340_HFT_2022231.Models
         [StringLength(100)]
         public string Name { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Books> Books { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
         public Publisher()
         {
         }
@@ -33,6 +33,24 @@ namespace RFR340_HFT_2022231.Models
             PublisherID = int.Parse(t[0]);
             Name = t[1];
 
+        }
+        public override bool Equals(object obj)
+        {
+            Publisher b = obj as Publisher;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.PublisherID == b.PublisherID
+                    && this.Name == b.Name;
+
+            }
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.PublisherID, this.Name);
         }
 
     }

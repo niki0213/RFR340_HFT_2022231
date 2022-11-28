@@ -18,15 +18,12 @@ namespace RFR340_HFT_2022231.Models
         [Range(100, 999)]
         public int PersonID { get; set; }
         [Required]
-        [StringLength(50)]
-        public string FirstName { get; set; }
+        [StringLength(100)]
+        public string Name { get; set; }
         [Required]
-        [StringLength(50)]
-        public string LastName { get; set; }
-        [Required]
-        public string phone { get; set; }
+        public string Phone { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Books> Books { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
         [JsonIgnore]
         public virtual ICollection<Rent> Rent { get; set; }
 
@@ -38,11 +35,27 @@ namespace RFR340_HFT_2022231.Models
         {
             string[] t = s.Split('#');
             PersonID = int.Parse(t[0]);
-            FirstName = t[1];
-            LastName = t[2];
-            phone = t[3];
+            Name = t[1];
+            Phone = t[3];
+        }
+        public override bool Equals(object obj)
+        {
+            Person b = obj as Person;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.PersonID == b.PersonID
+                    && this.Name == b.Name
+                    && this.Phone == b.Phone;
 
-
+            }
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.PersonID, this.Name, this.Phone);
         }
     }
 }

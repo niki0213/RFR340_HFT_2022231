@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RFR340_HFT_2022231.Models
 {
-    public class Books
+    public class Book
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -19,11 +19,9 @@ namespace RFR340_HFT_2022231.Models
         [Required]
         [StringLength(250)]
         public string Title { get; set; }
-
+        [Required]
         [StringLength(100)]
         public string Author { get; set; }
-
-        public int PublicationYear { get; set; }
 
         [Range(0, 9)]
         public int PublisherID { get; set; }
@@ -34,18 +32,36 @@ namespace RFR340_HFT_2022231.Models
         [JsonIgnore]
         public virtual Publisher Publisher { get; set; }
 
-        public Books()
+        public Book()
         {
 
         }
-        public Books(string s)
+        public Book(string s)
         {
             string[] t = s.Split('#');
             BookID = int.Parse(t[0]);
             Title = t[1];
             Author = t[2];
-            PublicationYear = int.Parse(t[3]);
-            PublisherID = int.Parse(t[4]);
+            PublisherID = int.Parse(t[3]);
+        }
+        public override bool Equals(object obj)
+        {
+            Book b = obj as Book;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.BookID == b.BookID
+                    && this.Title == b.Title
+                    && this.Author == b.Author
+                    && this.PublisherID == b.PublisherID;
+            }
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.BookID, this.Title, this.Author, this.PublisherID);
         }
     }
 }

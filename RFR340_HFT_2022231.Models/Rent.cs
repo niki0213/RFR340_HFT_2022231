@@ -13,35 +13,54 @@ namespace RFR340_HFT_2022231.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Range(10,99)]
-        public int RentID { get; set; }
-
         [Range(1000, 9999)]
         public int BookID { get; set; }
-        [Range(100,999)]
-        public int PersonID { get; set; }
+        [Required]
+        [StringLength(250)]
+        public string Title { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string Author { get; set; }
 
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        [Range(0, 9)]
+        public int PublisherID { get; set; }
         [JsonIgnore]
-        public virtual Books Books { get; set; }
+        public virtual ICollection<Rent> Rent { get; set; }
         [JsonIgnore]
-        public virtual Person Person { get; set; }
-        public Rent()
+        public virtual ICollection<Person> Person { get; set; }
+        [JsonIgnore]
+        public virtual Publisher Publisher { get; set; }
+
+        public Book()
         {
 
         }
-
-        public Rent(string s)
+        public Book(string s)
         {
             string[] t = s.Split('#');
-            RentID = int.Parse(t[0]);
-            BookID = int.Parse(t[1]);
-            PersonID = int.Parse(t[2]);
-            string[] dates = t[3].Split('.');
-            string[] dates2 = t[4].Split('.');
-            Start = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2]));
-            End = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2]));
+            BookID = int.Parse(t[0]);
+            Title = t[1];
+            Author = t[2];
+            PublisherID = int.Parse(t[3]);
+        }
+        public override bool Equals(object obj)
+        {
+            Book b = obj as Book;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.BookID == b.BookID
+                    && this.Title == b.Title
+                    && this.Author == b.Author
+                    && this.PublisherID == b.PublisherID;
+            }
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.BookID, this.Title, this.Author, this.PublisherID);
         }
     }
 }
