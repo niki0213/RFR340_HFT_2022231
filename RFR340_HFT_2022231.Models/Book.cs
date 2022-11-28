@@ -22,7 +22,7 @@ namespace RFR340_HFT_2022231.Models
         [Required]
         [StringLength(100)]
         public string Author { get; set; }
-
+        [Required]
         [Range(0, 9)]
         public int PublisherID { get; set; }
         [JsonIgnore]
