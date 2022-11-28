@@ -7,49 +7,44 @@ using System.Collections.Generic;
 
 namespace RFR340_HFT_2022231.Endpoint.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class PublisherController : ControllerBase
     {
         IPublisherLogic logic;
-
         public PublisherController(IPublisherLogic logic)
         {
             this.logic = logic;
         }
-        // GET: api/<PublisherController>
+
         [HttpGet]
         public IEnumerable<Publisher> ReadAll()
         {
-            return logic.ReadAll();
+            return this.logic.ReadAll();
         }
 
-        // GET api/<PublisherController>/5
         [HttpGet("{id}")]
         public Publisher Read(int id)
         {
-            return logic.Read(id);
+            return this.logic.Read(id);
         }
 
-        // POST api/<PublisherController>
         [HttpPost]
         public void Create([FromBody] Publisher value)
         {
-            Create(value);
+            this.logic.Create(value);
         }
 
-        // PUT api/<PublisherController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Update([FromBody] Publisher value)
         {
-            logic.Update(value);
+            this.logic.Update(value);
         }
 
-        // DELETE api/<PublisherController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            logic.Delete(id);
+            this.logic.Delete(id);
         }
     }
 }

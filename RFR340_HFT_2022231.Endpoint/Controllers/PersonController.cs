@@ -12,45 +12,39 @@ namespace RFR340_HFT_2022231.Endpoint.Controllers
     public class PersonController : ControllerBase
     {
         IPersonLogic logic;
-
         public PersonController(IPersonLogic logic)
         {
             this.logic = logic;
         }
 
-        // GET: api/<PersonController>
         [HttpGet]
         public IEnumerable<Person> ReadAll()
         {
-            return logic.ReadAll();
+            return this.logic.ReadAll();
         }
 
-        // GET api/<PersonController>/5
         [HttpGet("{id}")]
         public Person Read(int id)
         {
-            return logic.Read(id);
+            return this.logic.Read(id);
         }
 
-        // POST api/<PersonController>
         [HttpPost]
         public void Create([FromBody] Person value)
         {
-            logic.Create(value);
+            this.logic.Create(value);
         }
 
-        // PUT api/<PersonController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Update([FromBody] Person value)
         {
-            logic.Update(value);
+            this.logic.Update(value);
         }
 
-        // DELETE api/<PersonController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            logic.Delete(id);
+            this.logic.Delete(id);
         }
     }
 }

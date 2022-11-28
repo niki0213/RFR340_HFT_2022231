@@ -36,7 +36,7 @@ namespace RFR340_HFT_2022231.Models
             string[] t = s.Split('#');
             PersonID = int.Parse(t[0]);
             Name = t[1];
-            Phone = t[3];
+            Phone = t[2];
         }
         public override bool Equals(object obj)
         {
