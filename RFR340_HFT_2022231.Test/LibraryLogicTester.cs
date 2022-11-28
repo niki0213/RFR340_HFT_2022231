@@ -18,7 +18,7 @@ namespace RFR340_HFT_2022231.Test
         RentLogic rentLogic;
         Mock<IRepository<Rent>> mockRent;
         BookLogic bookLogic;
-        Mock<IRepository<Books>> mockBooks;
+        Mock<IRepository<Book>> mockBooks;
         PersonLogic personLogic;
         Mock<IRepository<Person>> mockPerson;
         PublisherLogic publisherLogic;
@@ -36,37 +36,40 @@ namespace RFR340_HFT_2022231.Test
                     RentID=101,
                     BookID=1,
                     PersonID=11,
-                    End=new DateTime(2002,02,13)
+                    Start=new DateTime(2022,11,1),
+                    Back=false
                 },
                  new Rent()
                 {
                     RentID=102,
                     BookID=2,
                     PersonID=11,
-                    End=new DateTime(2022,12,1)
+                    Start=new DateTime(2022,11,1),
+                    Back=true,
 
-                }, 
+                },
                 new Rent()
                 {
                     RentID=103,
                     BookID=1,
                     PersonID=12,
-                    End=new DateTime(3000,1,1)
+                    Start=new DateTime(2022,11,1),
+                    Back= false
 
                 },
 
-            }.AsQueryable());;
+            }.AsQueryable()); ;
             rentLogic = new RentLogic(mockRent.Object);
-            mockBooks = new Mock<IRepository<Books>>();
-            mockBooks.Setup(r => r.ReadAll()).Returns(new List<Books>()
+            mockBooks = new Mock<IRepository<Book>>();
+            mockBooks.Setup(r => r.ReadAll()).Returns(new List<Book>()
             {
-               new Books()
+               new Book()
                {
                    BookID=1,
                    Title="A",
                    PublisherID=1001,
                },
-                new Books()
+                new Book()
                {
                    BookID=2,
                    Title="B",
@@ -83,16 +86,14 @@ namespace RFR340_HFT_2022231.Test
                new Person()
                {
                    PersonID=11,
-                   FirstName="J",
-                   LastName="K",
-                   phone="11"
+                   Name="J",
+                   Phone="11"
                },
                 new Person()
                {
                    PersonID=12,
-                   FirstName="L",
-                   LastName="M",
-                   phone="11"
+                   Name="L",
+                   Phone="11"
                }
 
             }.AsQueryable());
@@ -112,7 +113,7 @@ namespace RFR340_HFT_2022231.Test
         }
 
 
-       
+
 
 
         [Test]
@@ -129,18 +130,17 @@ namespace RFR340_HFT_2022231.Test
             var person = new Person()
             {
                 PersonID = 11,
-                FirstName = "Joe",
-                LastName = "Smith",
-                phone = "11"
+                Name = "Joe Smith",
+                Phone = "11"
             };
             try
             {
                 personLogic.Create(person);
             }
-            catch 
+            catch
             {
 
-                
+
             }
             mockPerson.Verify(r => r.Create(person), Times.Never);
         }
@@ -150,9 +150,8 @@ namespace RFR340_HFT_2022231.Test
             var person = new Person()
             {
                 PersonID = 11,
-                FirstName = "J",
-                LastName = "Smith",
-                phone = "1234567890"
+                Name = "J",
+                Phone = "1234567890"
             };
             try
             {
@@ -171,9 +170,8 @@ namespace RFR340_HFT_2022231.Test
             var person = new Person()
             {
                 PersonID = 11,
-                FirstName = "Joe",
-                LastName = "Smith",
-                phone = "1234567890"
+                Name = "Joe Smith",
+                Phone = "1234567890"
             };
             try
             {
@@ -189,7 +187,7 @@ namespace RFR340_HFT_2022231.Test
         [Test]
         public void CreateBook()
         {
-            var book = new Books()
+            var book = new Book()
             {
                 BookID = 1,
                 Title = "A",
@@ -199,10 +197,10 @@ namespace RFR340_HFT_2022231.Test
             {
                 bookLogic.Create(book);
             }
-            catch 
+            catch
             {
 
-               
+
             }
             mockBooks.Verify(r => r.Create(book), Times.Never);
 
@@ -214,7 +212,7 @@ namespace RFR340_HFT_2022231.Test
             {
                 PublisherID = 1,
                 Name = "A",
-               
+
             };
             try
             {
@@ -230,7 +228,7 @@ namespace RFR340_HFT_2022231.Test
         }
         [Test]
         public void CreatPublisher()
-        { 
+        {
             var publisher = new Publisher()
             {
                 PublisherID = 1,
@@ -261,7 +259,7 @@ namespace RFR340_HFT_2022231.Test
                     Title="B",
                     Count=1
                 },
-               
+
             };
             Assert.AreEqual(expected, actual);
         }
@@ -277,7 +275,7 @@ namespace RFR340_HFT_2022231.Test
                 {
                     ID=1,
                     Title="A"
-                   
+
                 },
                 new BookInfo()
                 {
@@ -303,7 +301,7 @@ namespace RFR340_HFT_2022231.Test
                        BookCount = 2
 
                 },
-               
+
 
             };
             Assert.AreEqual(expected, actual);
@@ -319,12 +317,20 @@ namespace RFR340_HFT_2022231.Test
                 {
                        BID = 1,
                        Title = "A",
-                       PID = 12,
-                       FirstName = "L",
-                       LastName = "M",
+                       PID = 11,
+                       Name = "J",
                        PhoneNumber = "11"
 
                 },
+                 new NotReturned()
+                {
+                       BID = 1,
+                       Title = "A",
+                       PID = 12,
+                       Name = "L",
+                       PhoneNumber = "11"
+
+                }
 
 
             };
@@ -339,22 +345,20 @@ namespace RFR340_HFT_2022231.Test
             {
                 new RentedIt()
                 {
-                      
-       
+
+
                    ID=11,
-                   FirstName="J",
-                   LastName="K",
+                   Name="J",
                    PhoneNumber="11"
                },
                 new RentedIt()
                {
                    ID=12,
-                   FirstName="L",
-                   LastName="M",
+                   Name="L",
                    PhoneNumber="11"
                }
 
-               
+
 
 
             };

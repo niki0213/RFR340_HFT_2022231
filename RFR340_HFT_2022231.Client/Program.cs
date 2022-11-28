@@ -14,51 +14,51 @@ namespace RFR340_HFT_2022231.Client
         static RestService rest;
         static void Create(string entity)
         {
-            if (entity == "Books")
-            {
-                Console.Write("Enter the Book's title: ");
-                string title = Console.ReadLine();
-                Console.Write("Enter the Books's' author: ");
-                string a = Console.ReadLine();
-                Console.Write("Enter the Book's publication year: ");
-                int year = int.Parse(Console.ReadLine());
-                Console.Write("Enter the Book's publisher id: ");
-                int id = int.Parse(Console.ReadLine());
-                rest.Post(new Books() { Title = title, Author = a, PublicationYear = year, PublisherID = id }, "books");
-            }
-            else if (entity == "Rent")
-            {
-                Console.Write("Enter the BookID: ");
-                int book = int.Parse(Console.ReadLine());
-                Console.Write("Enter the PersonID: ");
-                int person = int.Parse(Console.ReadLine());
-                Console.Write("Enter the Book's publication year: ");
-                rest.Post(new Rent() { BookID = book, PersonID = person },"rent");
-            }
+            //if (entity == "Books")
+            //{
+            //    Console.Write("Enter the Book's title: ");
+            //    string title = Console.ReadLine();
+            //    Console.Write("Enter the Books's' author: ");
+            //    string a = Console.ReadLine();
+            //    Console.Write("Enter the Book's publication year: ");
+            //    int year = int.Parse(Console.ReadLine());
+            //    Console.Write("Enter the Book's publisher id: ");
+            //    int id = int.Parse(Console.ReadLine());
+            //    rest.Post(new Books() { Title = title, Author = a, PublicationYear = year, PublisherID = id }, "books");
+            //}
+            //else if (entity == "Rent")
+            //{
+            //    Console.Write("Enter the BookID: ");
+            //    int book = int.Parse(Console.ReadLine());
+            //    Console.Write("Enter the PersonID: ");
+            //    int person = int.Parse(Console.ReadLine());
+            //    Console.Write("Enter the Book's publication year: ");
+            //    rest.Post(new Rent() { BookID = book, PersonID = person },"rent");
+            //}
         
-            else if (entity == "Publisher")
-            {
-                Console.Write("Enter the publisher's name: ");
-                string name =Console.ReadLine();
-                rest.Post(new Publisher() { Name = name },"publisher");
-            }
-            else if (entity == "Person")
-            {
-                Console.Write("Enter the Persons's first name: ");
-                string fname = Console.ReadLine();
-                Console.Write("Enter the Persons's last name: ");
-                string lname = Console.ReadLine();
-                Console.Write("Enter the Persons's phone: ");
-                string phone = Console.ReadLine();
-                rest.Post(new Person() { FirstName = fname, LastName = lname, phone = phone }, "person");
-            }
+            //else if (entity == "Publisher")
+            //{
+            //    Console.Write("Enter the publisher's name: ");
+            //    string name =Console.ReadLine();
+            //    rest.Post(new Publisher() { Name = name },"publisher");
+            //}
+            //else if (entity == "Person")
+            //{
+            //    Console.Write("Enter the Persons's first name: ");
+            //    string fname = Console.ReadLine();
+            //    Console.Write("Enter the Persons's last name: ");
+            //    string lname = Console.ReadLine();
+            //    Console.Write("Enter the Persons's phone: ");
+            //    string phone = Console.ReadLine();
+            //    rest.Post(new Person() { FirstName = fname, LastName = lname, phone = phone }, "person");
+            //}
 
         }
         static void List(string entity)
         {
             if (entity == "Books")
             {
-                List<Books> books = rest.Get<Books>("books");
+                List<Book> books = rest.Get<Book>("books");
                 foreach (var item in books)
                 {
                     Console.WriteLine(item.BookID + " : " + item.Title + ":\t" + item.Author);
@@ -77,7 +77,7 @@ namespace RFR340_HFT_2022231.Client
                 List<Person> rent = rest.Get<Person>("person");
                 foreach (var item in rent)
                 {
-                    Console.WriteLine(item.PersonID + " : " + item.FirstName + " " + item.LastName);
+                    Console.WriteLine(item.PersonID + " : " + item.Name);
                 }
             }
             else if (entity == "Publisher")
@@ -92,45 +92,45 @@ namespace RFR340_HFT_2022231.Client
         }
         static void Update(string entity)
         {
-            if (entity == "Books")
-            {
-                Console.Write("Enter Book's id to update: ");
-                int id = int.Parse(Console.ReadLine());
-                Books one = rest.Get<Books>(id, "books");
-                Console.Write($"New title [old: {one.Title}]: ");
-                string name = Console.ReadLine();
-                one.Title = name;
-                rest.Put(one, "books");
-            }
-            else if (entity == "Rent")
-            {
-                Console.Write("Enter rent's id to update: ");
-                int id = int.Parse(Console.ReadLine());
-                Rent one = rest.Get<Rent>(id, "rent");
-                Console.Write($"New bookID: ");
-                string[] dates = Console.ReadLine().Split('.');
-                one.End = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2]));
-                rest.Put(one, "rent");
-            }
-            else if (entity == "Person")
-            {
-                Console.Write("Enter Person's id to update: ");
-                int id = int.Parse(Console.ReadLine());
-                Person one = rest.Get<Person>(id, "person");
-                Console.Write($"New phone number [old: {one.phone}]: ");
-                string phone = Console.ReadLine();
-                one.phone = phone;
-                rest.Put(one, "person");
-            }
-            else if (entity == "Publisher")
-            {
-                Console.Write("Enter Publishers's id to update: ");
-                int id = int.Parse(Console.ReadLine());
-                Publisher one = rest.Get<Publisher>(id, "publisher");
-                Console.Write($"New name [old: {one.Name}]: ");
-                one.Name = Console.ReadLine();
-                rest.Put(one, "publisher");
-            }
+            //if (entity == "Books")
+            //{
+            //    Console.Write("Enter Book's id to update: ");
+            //    int id = int.Parse(Console.ReadLine());
+            //    Books one = rest.Get<Books>(id, "books");
+            //    Console.Write($"New title [old: {one.Title}]: ");
+            //    string name = Console.ReadLine();
+            //    one.Title = name;
+            //    rest.Put(one, "books");
+            //}
+            //else if (entity == "Rent")
+            //{
+            //    Console.Write("Enter rent's id to update: ");
+            //    int id = int.Parse(Console.ReadLine());
+            //    Rent one = rest.Get<Rent>(id, "rent");
+            //    Console.Write($"New bookID: ");
+            //    string[] dates = Console.ReadLine().Split('.');
+            //    one.End = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2]));
+            //    rest.Put(one, "rent");
+            //}
+            //else if (entity == "Person")
+            //{
+            //    Console.Write("Enter Person's id to update: ");
+            //    int id = int.Parse(Console.ReadLine());
+            //    Person one = rest.Get<Person>(id, "person");
+            //    Console.Write($"New phone number [old: {one.phone}]: ");
+            //    string phone = Console.ReadLine();
+            //    one.phone = phone;
+            //    rest.Put(one, "person");
+            //}
+            //else if (entity == "Publisher")
+            //{
+            //    Console.Write("Enter Publishers's id to update: ");
+            //    int id = int.Parse(Console.ReadLine());
+            //    Publisher one = rest.Get<Publisher>(id, "publisher");
+            //    Console.Write($"New name [old: {one.Name}]: ");
+            //    one.Name = Console.ReadLine();
+            //    rest.Put(one, "publisher");
+            //}
         }
         static void Delete(string entity)
         {

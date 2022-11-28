@@ -32,7 +32,7 @@ namespace RFR340_HFT_2022231.Endpoint
         {
             services.AddTransient<LibraryDbContext>();
 
-            services.AddTransient<IRepository<Books>, BooksRepository>();
+            services.AddTransient<IRepository<Book>, BookRepository>();
             services.AddTransient<IRepository<Rent>, RentRepository>();
             services.AddTransient<IRepository<Person>, PersonRepository>();
             services.AddTransient<IRepository<Publisher>, PublisherRepository>();

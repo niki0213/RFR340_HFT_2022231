@@ -21,28 +21,28 @@ namespace RFR340_HFT_2022231.Endpoint.Controllers
 
         // GET: api/<BooksController>
         [HttpGet]
-        public IEnumerable<Books> ReadAll()
+        public IEnumerable<Book> ReadAll()
         {
             return this.logic.ReadAll();
         }
 
         // GET api/<BooksController>/5
         [HttpGet("{id}")]
-        public Books Read(int id)
+        public Book Read(int id)
         {
             return this.logic.Read(id);
         }
 
         // POST api/<BooksController>
         [HttpPost]
-        public void Create([FromBody] Books value)
+        public void Create([FromBody] Book value)
         {
             this.logic.Create(value);
         }
 
         // PUT api/<BooksController>/5
         [HttpPut]
-        public void Update([FromBody] Books value)
+        public void Update([FromBody] Book value)
         {
             this.logic.Update(value);
         }
