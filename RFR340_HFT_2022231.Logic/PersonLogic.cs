@@ -19,17 +19,13 @@ namespace RFR340_HFT_2022231.Logic
 
         public void Create(Person item)
         {
-            if (item.phone.Length!=10)
+            if (item.Phone.Length != 10)
             {
                 throw new ArgumentException("The phone number isn't valid");
             }
-            else if (item.FirstName.Length < 3)
+            else if (item.Name.Length < 3)
             {
-                throw new ArgumentException("The first name is too short");
-            }
-            else if (item.LastName.Length < 3)
-            {
-                throw new ArgumentException("The last name is too short");
+                throw new ArgumentException("The name is too short");
             }
             this.repo.Create(item);
         }

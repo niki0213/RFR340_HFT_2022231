@@ -13,54 +13,58 @@ namespace RFR340_HFT_2022231.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Range(10, 99)]
+        public int RentID { get; set; }
+        [Required]
         [Range(1000, 9999)]
         public int BookID { get; set; }
         [Required]
-        [StringLength(250)]
-        public string Title { get; set; }
+        [Range(100, 999)]
+        public int PersonID { get; set; }
         [Required]
-        [StringLength(100)]
-        public string Author { get; set; }
-
-        [Range(0, 9)]
-        public int PublisherID { get; set; }
+        public DateTime Start { get; set; }
+        [Required]
+        public bool Back { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Rent> Rent { get; set; }
+        public virtual Book Book { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Person> Person { get; set; }
-        [JsonIgnore]
-        public virtual Publisher Publisher { get; set; }
-
-        public Book()
+        public virtual Person Person { get; set; }
+        public Rent()
         {
 
         }
-        public Book(string s)
+
+        public Rent(string s)
         {
             string[] t = s.Split('#');
-            BookID = int.Parse(t[0]);
-            Title = t[1];
-            Author = t[2];
-            PublisherID = int.Parse(t[3]);
+            RentID = int.Parse(t[0]);
+            BookID = int.Parse(t[1]);
+            PersonID = int.Parse(t[2]);
+            string[] dates = t[3].Split('.');
+            Start = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2]));
+            Back = t[4] == "1";
         }
         public override bool Equals(object obj)
         {
-            Book b = obj as Book;
+            Rent b = obj as Rent;
             if (b == null)
             {
                 return false;
             }
             else
             {
-                return this.BookID == b.BookID
-                    && this.Title == b.Title
-                    && this.Author == b.Author
-                    && this.PublisherID == b.PublisherID;
+                return this.RentID == b.RentID
+                    && this.BookID == b.BookID
+                    && this.PersonID == b.PersonID
+                    && this.Start == b.Start
+                    && this.Back == b.Back;
+
             }
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.BookID, this.Title, this.Author, this.PublisherID);
+            return HashCode.Combine(this.PersonID, this.BookID, this.PersonID, this.Start, this.Back);
         }
     }
+}
 }

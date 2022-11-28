@@ -8,14 +8,14 @@ namespace RFR340_HFT_2022231.Logic
     public interface IBookLogic
     {
         IEnumerable<BookLogic.BookReadCount> BookReadCounter();
-        void Create(Books item);
+        void Create(Book item);
         void Delete(int id);
         IEnumerable<BookLogic.NotReturned> DidNotReturned();
         IEnumerable<BookLogic.BookInfo> HaveRead(int ID);
         IEnumerable<BookLogic.PublisherInfo> PublishedBooks();
-        Books Read(int id);
-        IQueryable<Books> ReadAll();
+        Book Read(int id);
+        IQueryable<Book> ReadAll();
         IEnumerable<BookLogic.RentedIt> RentedBy(int bookid);
-        void Update(Books item);
+        void Update(Book item);
     }
 }

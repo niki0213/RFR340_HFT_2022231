@@ -10,12 +10,12 @@ namespace RFR340_HFT_2022231.Logic
 {
     public class BookLogic : IBookLogic
     {
-        IRepository<Books> repo;
+        IRepository<Book> repo;
         IRepository<Rent> rentrepo;
         IRepository<Publisher> publisherrepo;
         IRepository<Person> personrepo;
 
-        public BookLogic(IRepository<Books> repo, IRepository<Rent> rentrepo, IRepository<Publisher> publisherrepo, IRepository<Person> personrepo)
+        public BookLogic(IRepository<Book> repo, IRepository<Rent> rentrepo, IRepository<Publisher> publisherrepo, IRepository<Person> personrepo)
         {
             this.repo = repo;
             this.rentrepo = rentrepo;
@@ -23,12 +23,12 @@ namespace RFR340_HFT_2022231.Logic
             this.personrepo = personrepo;
         }
 
-        public BookLogic(IRepository<Books> repo)
+        public BookLogic(IRepository<Book> repo)
         {
             this.repo = repo;
         }
 
-        public void Create(Books item)
+        public void Create(Book item)
         {
             if (item.Title.Length < 3)
             {
@@ -42,17 +42,17 @@ namespace RFR340_HFT_2022231.Logic
             this.repo.Delete(id);
         }
 
-        public Books Read(int id)
+        public Book Read(int id)
         {
             return this.repo.Read(id);
         }
 
-        public IQueryable<Books> ReadAll()
+        public IQueryable<Book> ReadAll()
         {
             return this.repo.ReadAll();
         }
 
-        public void Update(Books item)
+        public void Update(Book item)
         {
             this.repo.Update(item);
         }
@@ -174,13 +174,12 @@ namespace RFR340_HFT_2022231.Logic
             var g = from p in this.personrepo.ReadAll()
                     join r in this.rentrepo.ReadAll()
                     on p.PersonID equals r.PersonID
-                    where r.End.Year == 3000
+                    where r.Back == false
                     select new
                     {
                         p.PersonID,
-                        p.FirstName,
-                        p.LastName,
-                        p.phone,
+                        p.Name,
+                        p.Phone,
                         r.BookID
                     };
 
@@ -192,9 +191,8 @@ namespace RFR340_HFT_2022231.Logic
                        BID = b.BookID,
                        Title = b.Title,
                        PID = p.PersonID,
-                       FirstName = p.FirstName,
-                       LastName = p.LastName,
-                       PhoneNumber = p.phone
+                       Name = p.Name,
+                       PhoneNumber = p.Phone
                    };
         }
 
@@ -203,8 +201,7 @@ namespace RFR340_HFT_2022231.Logic
             public int BID { get; set; }
             public string Title { get; set; }
             public int PID { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
+            public string Name { get; set; }
             public string PhoneNumber { get; set; }
             public override bool Equals(object obj)
             {
@@ -218,15 +215,14 @@ namespace RFR340_HFT_2022231.Logic
                     return this.BID == b.BID
                         && this.Title == b.Title
                         && this.PID == b.PID
-                        && this.FirstName == b.FirstName
-                        && this.LastName == b.LastName
+                        && this.Name == b.Name
                         && this.PhoneNumber == b.PhoneNumber;
 
                 }
             }
             public override int GetHashCode()
             {
-                return HashCode.Combine(this.BID, this.Title, this.PID, this.FirstName, this.LastName, this.PhoneNumber);
+                return HashCode.Combine(this.BID, this.Title, this.PID, this.Name, this.PhoneNumber);
 
             }
         }
@@ -240,21 +236,19 @@ namespace RFR340_HFT_2022231.Logic
                    select new RentedIt()
                    {
                        ID = p.PersonID,
-                       FirstName = p.FirstName,
-                       LastName = p.LastName,
-                       PhoneNumber = p.phone
+                       Name = p.Name,
+                       PhoneNumber = p.Phone
 
                    };
 
 
         }
-        
+
         public class RentedIt
         {
 
             public int ID { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
+            public string Name { get; set; }
             public string PhoneNumber { get; set; }
             public override bool Equals(object obj)
             {
@@ -266,23 +260,22 @@ namespace RFR340_HFT_2022231.Logic
                 else
                 {
                     return this.ID == b.ID
-                        && this.FirstName == b.FirstName
-                        && this.LastName == b.LastName
+                        && this.Name == b.Name
                         && this.PhoneNumber == b.PhoneNumber;
 
 
                 }
             }
-                public override int GetHashCode()
-                {
-                    return HashCode.Combine(this.ID, this.FirstName, this.LastName, this.PhoneNumber);
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(this.ID, this.Name, this.PhoneNumber);
 
-                }
-            
+            }
+
 
         }
-        
-        
+
+
 
 
     }
