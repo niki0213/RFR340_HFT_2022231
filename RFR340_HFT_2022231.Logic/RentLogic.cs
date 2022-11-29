@@ -8,7 +8,7 @@ using RFR340_HFT_2022231.Repository;
 
 namespace RFR340_HFT_2022231.Logic
 {
-    public class RentLogic: IRentLogic
+    public class RentLogic : IRentLogic
     {
         public IRepository<Rent> repo;
 
@@ -85,7 +85,7 @@ namespace RFR340_HFT_2022231.Logic
                    {
                        ID = r.Person.PersonID,
                        Name = r.Person.Name,
- 
+
 
                    };
         }

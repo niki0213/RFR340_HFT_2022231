@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RFR340_HFT_2022231.Logic
 {
-    public class PublisherLogic: IPublisherLogic
+    public class PublisherLogic : IPublisherLogic
     {
         IRepository<Publisher> repo;
 
@@ -47,16 +47,6 @@ namespace RFR340_HFT_2022231.Logic
             this.repo.Update(item);
         }
 
-        public IEnumerable<PublisherInfo> PublishedBooks()
-        {
-            return from b in this.repo.ReadAll()
-                   group b by b.PublisherID into g
-
-                   select new PublisherInfo()
-                   {
-                       ID = g.Key,
-                       BookCount = g.Count(),
-                   };
-        }
+      
     }
 }

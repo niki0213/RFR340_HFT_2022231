@@ -180,26 +180,53 @@ namespace RFR340_HFT_2022231.Client
         static void BookReadCounter()
         {
             var BRC = rest.Get<BookReadCount>("method/BookReadCounter");
+            foreach (var item in BRC)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadLine();
 
         }
         static void HaveRead()
         {
             Console.Write("Enter Book's ID");
             int id = int.Parse(Console.ReadLine());
-            var HV = rest.Get<BookInfo>(id, "Method/HaveRead");
+            var HV = rest.Get<BookInfo>($"Method/HaveRead?id={id}");
+            foreach (var item in HV)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadLine();
 
         }
         static void PublishedBooks()
         {
-
+            var PB = rest.Get<PublisherInfo>("Method2/PublishedBooks");
+            foreach (var item in PB)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadLine();
         }
         static void DidNotReturned()
         {
-
+            var DR = rest.Get<NotReturned>("Method/DidNotReturned");
+            foreach (var item in DR)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadLine();
         }
         static void RentedBy()
         {
-
+            Console.Write("Enter Book's ID");
+            int id = int.Parse(Console.ReadLine());
+            var RB = rest.Get<RentedIt>($"Method/RentedBy?id={id}");
+            foreach (var item in RB)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadLine();
         }
 
         static void Main(string[] args)

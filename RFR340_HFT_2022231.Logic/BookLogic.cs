@@ -54,8 +54,8 @@ namespace RFR340_HFT_2022231.Logic
                    select new PublisherInfo()
                    {
                        ID = g.Key,
+                       BookCount = g.Count(),
                    };
         }
-
     }
 }

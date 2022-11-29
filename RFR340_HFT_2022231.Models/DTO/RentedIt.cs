@@ -22,7 +22,7 @@ namespace RFR340_HFT_2022231.Models.DTO
             else
             {
                 return this.ID == b.ID
-                    && this.Name == b.Name
+                    && this.Name == b.Name;
 
 
             }

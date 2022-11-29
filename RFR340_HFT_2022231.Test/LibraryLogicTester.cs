@@ -24,7 +24,6 @@ namespace RFR340_HFT_2022231.Test
         Mock<IRepository<Person>> mockPerson;
         PublisherLogic publisherLogic;
         Mock<IRepository<Publisher>> mockPublisher;
-        BookLogic logic;
 
         [SetUp]
         public void Init()
@@ -33,116 +32,94 @@ namespace RFR340_HFT_2022231.Test
             mockBooks = new Mock<IRepository<Book>>();
             mockPerson = new Mock<IRepository<Person>>();
             mockPublisher = new Mock<IRepository<Publisher>>();
+            var book1 =
+            new Book()
+            {
+                BookID = 1,
+                Title = "A",
+                PublisherID = 1001,
+            };
+            var book2 =
+            new Book()
+            {
+                BookID = 2,
+                Title = "B",
+                PublisherID = 1001,
+            };
+            var person1 = new Person()
+            {
+                PersonID = 11,
+                Name = "J",
+                Phone = "11"
+            };
+            var person2 = new Person()
+            {
+                PersonID = 12,
+                Name = "L",
+                Phone = "11"
+            };
+            var books = new List<Book>();
+            books.Add(book1);
+            books.Add(book2);
+            var publisher = new Publisher()
+            {
+                PublisherID = 1001,
+                Name = "W",
+                Books=books
+
+            };
             var rent1 = new Rent()
             {
                 RentID = 101,
                 BookID = 1,
                 PersonID = 11,
                 Start = new DateTime(2022, 11, 1),
-                Back = false
+                Back = false,
+                Person=person1,
+                Book=book1
             };
             var rent2 = new Rent()
             {
-                RentID = 101,
-                BookID = 1,
+                RentID = 102,
+                BookID = 2,
                 PersonID = 11,
                 Start = new DateTime(2022, 11, 1),
-                Back = false
+                Back = true,
+                Person = person1,
+                Book = book2
             };
             var rent3 = new Rent()
             {
-                RentID = 101,
+                RentID = 103,
                 BookID = 1,
-                PersonID = 11,
+                PersonID = 12,
                 Start = new DateTime(2022, 11, 1),
-                Back = false
+                Back = false,
+                Person = person2,
+                Book = book1
             };
-            mockRent.Setup(r => r.ReadAll()).Returns(new List<Rent>()
+            var books1=books.AsQueryable();
+            var rents = new List<Rent>()
             {
-                new Rent()
-                {
-                    RentID=101,
-                    BookID=1,
-                    PersonID=11,
-                    Start=new DateTime(2022,11,1),
-                    Back=false
-                },
-                 new Rent()
-                {
-                    RentID=102,
-                    BookID=2,
-                    PersonID=11,
-                    Start=new DateTime(2022,11,1),
-                    Back=true,
-
-                },
-                new Rent()
-                {
-                    RentID=103,
-                    BookID=1,
-                    PersonID=12,
-                    Start=new DateTime(2022,11,1),
-                    Back= false
-
-                },
-
-            }.AsQueryable()); ;
-            rentLogic = new RentLogic(mockRent.Object);
-            mockBooks = new Mock<IRepository<Book>>();
-            mockBooks.Setup(r => r.ReadAll()).Returns(new List<Book>()
+                rent1, rent2, rent3
+            }.AsQueryable();
+            var person = new List<Person>
             {
-               new Book()
-               {
-                   BookID=1,
-                   Title="A",
-                   PublisherID=1001,
-               },
-                new Book()
-               {
-                   BookID=2,
-                   Title="B",
-                   PublisherID=1001,
-               }
-
-            }.AsQueryable());
+                person1, person2
+            }.AsQueryable();
+            var publishers = new List<Publisher>
+            {
+               publisher
+            }.AsQueryable();
+            mockBooks.Setup(t => t.ReadAll()).Returns(books1);
+            mockPerson.Setup(t => t.ReadAll()).Returns(person);
+            mockPublisher.Setup(t => t.ReadAll()).Returns(publishers);
+            mockRent.Setup(t => t.ReadAll()).Returns(rents);
             bookLogic = new BookLogic(mockBooks.Object);
-
-
-            mockPerson = new Mock<IRepository<Person>>();
-            mockPerson.Setup(r => r.ReadAll()).Returns(new List<Person>()
-            {
-               new Person()
-               {
-                   PersonID=11,
-                   Name="J",
-                   Phone="11"
-               },
-                new Person()
-               {
-                   PersonID=12,
-                   Name="L",
-                   Phone="11"
-               }
-
-            }.AsQueryable());
+            rentLogic = new RentLogic(mockRent.Object);
             personLogic = new PersonLogic(mockPerson.Object);
-            mockPublisher = new Mock<IRepository<Publisher>>();
-            mockPublisher.Setup(r => r.ReadAll()).Returns(new List<Publisher>()
-            {
-               new Publisher()
-               {
-                   PublisherID=1001,
-                   Name="W"
-
-               }
-            }.AsQueryable());
             publisherLogic = new PublisherLogic(mockPublisher.Object);
-            logic = new BookLogic(mockBooks.Object, mockRent.Object, mockPublisher.Object, mockPerson.Object);
         }
-
-
-
-
 
         [Test]
         public void CreateRent()
@@ -260,7 +237,7 @@ namespace RFR340_HFT_2022231.Test
             var publisher = new Publisher()
             {
                 PublisherID = 1,
-                Name = "ABCDE",
+                Name = "ABCDEF",
 
             };
 
@@ -272,19 +249,17 @@ namespace RFR340_HFT_2022231.Test
         [Test]
         public void BookReadCounter()
         {
-            var actual = logic.BookReadCounter().ToList();
+            var actual = rentLogic.BookReadCounter().ToList();
             var expected = new List<BookReadCount>()
             {
                 new BookReadCount()
                 {
                     Id=1,
-                    Title="A",
                     Count=2
                 },
                  new BookReadCount()
                 {
                     Id=2,
-                    Title="B",
                     Count=1
                 },
 
@@ -296,19 +271,19 @@ namespace RFR340_HFT_2022231.Test
         [Test]
         public void HaveRead()
         {
-            var actual = logic.HaveRead(11).ToList();
+            var actual = rentLogic.HaveRead(11).ToList();
             var expected = new List<BookInfo>()
             {
                 new BookInfo()
                 {
                     ID=1,
-                    //Title="A"
+                    Title="A"
 
                 },
                 new BookInfo()
                 {
                     ID=2,
-                    //Title="B"
+                    Title="B"
 
                 },
 
@@ -319,13 +294,12 @@ namespace RFR340_HFT_2022231.Test
         [Test]
         public void PublishedBooks()
         {
-            var actual = logic.PublishedBooks().ToList();
+            var actual = bookLogic.PublishedBooks().ToList();
             var expected = new List<PublisherInfo>()
             {
                 new PublisherInfo()
                 {
                        ID = 1001,
-                       Name = "W",
                        BookCount = 2
 
                 },
@@ -338,7 +312,7 @@ namespace RFR340_HFT_2022231.Test
         [Test]
         public void DidNotReturned()
         {
-            var actual = logic.DidNotReturned().ToList();
+            var actual = rentLogic.DidNotReturned().ToList();
             var expected = new List<NotReturned>()
             {
                 new NotReturned()
@@ -368,7 +342,7 @@ namespace RFR340_HFT_2022231.Test
         [Test]
         public void RentedBy()
         {
-            var actual = logic.RentedBy(1).ToList();
+            var actual = rentLogic.RentedBy(1).ToList();
             var expected = new List<RentedIt>()
             {
                 new RentedIt()
