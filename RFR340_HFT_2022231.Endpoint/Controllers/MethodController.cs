@@ -24,9 +24,9 @@ namespace RFR340_HFT_2022231.Endpoint.Controllers
             return this.logic.BookReadCounter();
         }
         [HttpGet]
-        public IEnumerable<BookInfo> HaveRead(int ID)
+        public IEnumerable<BookInfo> HaveRead([FromQuery] int id)
         {
-            return this.logic.HaveRead(ID);
+            return this.logic.HaveRead(id);
         }
 
         [HttpGet]
@@ -36,9 +36,9 @@ namespace RFR340_HFT_2022231.Endpoint.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<RentedIt> RentedBy([FromQuery] int bookid)
+        public IEnumerable<RentedIt> RentedBy([FromQuery] int id)
         {
-            return this.logic.RentedBy(bookid);
+            return this.logic.RentedBy(id);
         }
     }
 }

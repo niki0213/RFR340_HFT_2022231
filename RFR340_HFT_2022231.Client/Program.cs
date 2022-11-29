@@ -189,7 +189,7 @@ namespace RFR340_HFT_2022231.Client
         }
         static void HaveRead()
         {
-            Console.Write("Enter Book's ID");
+            Console.Write("Enter Person's ID: ");
             int id = int.Parse(Console.ReadLine());
             var HV = rest.Get<BookInfo>($"Method/HaveRead?id={id}");
             foreach (var item in HV)
@@ -219,7 +219,7 @@ namespace RFR340_HFT_2022231.Client
         }
         static void RentedBy()
         {
-            Console.Write("Enter Book's ID");
+            Console.Write("Enter Book's ID: ");
             int id = int.Parse(Console.ReadLine());
             var RB = rest.Get<RentedIt>($"Method/RentedBy?id={id}");
             foreach (var item in RB)
