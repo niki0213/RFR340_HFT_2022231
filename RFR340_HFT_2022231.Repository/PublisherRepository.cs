@@ -10,6 +10,7 @@ namespace RFR340_HFT_2022231.Repository
 
     public class PublisherRepository : Repository<Publisher>, IRepository<Publisher>
     {
+
         public PublisherRepository(LibraryDbContext Library) : base(Library)
         {
         }

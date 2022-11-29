@@ -24,11 +24,15 @@ namespace RFR340_HFT_2022231.Models
         public string Author { get; set; }
         [Required]
         [Range(0, 9)]
+        [ForeignKey(nameof(Publisher))]
         public int PublisherID { get; set; }
+        [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Rent> Rent { get; set; }
+        [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Person> Person { get; set; }
+        [NotMapped]
         [JsonIgnore]
         public virtual Publisher Publisher { get; set; }
 

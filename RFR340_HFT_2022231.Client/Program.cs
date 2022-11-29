@@ -1,6 +1,8 @@
 ﻿using ConsoleTools;
 using RFR340_HFT_2022231.Models;
+using RFR340_HFT_2022231.Models.DTO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -37,7 +39,7 @@ namespace RFR340_HFT_2022231.Client
                 Console.Write("Enter the Rent's date: ");
                 string[] dates = Console.ReadLine().Split('.');
                 DateTime Start = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2])); ;
-                rest.Post(new Rent() { BookID = book, PersonID = person, Start=Start, Back=false }, "rent");
+                rest.Post(new Rent() { RentID=ID, BookID = book, PersonID = person, Start=Start, Back=false }, "rent");
             }
 
             else if (entity == "Publisher")
@@ -162,6 +164,44 @@ namespace RFR340_HFT_2022231.Client
                 rest.Delete(id, "publisher");
             }
         }
+        static void Read(string entity)
+        {
+            if (entity == "Book")
+            {
+                Console.Write("Enter Book's id to delete: ");
+                int id = int.Parse(Console.ReadLine());
+                var item = rest.Get<Book>(id, "book");
+                Console.WriteLine(item.Title);
+
+            }
+            Console.ReadLine();
+
+        }
+        static void BookReadCounter()
+        {
+            var BRC = rest.Get<BookReadCount>("method/BookReadCounter");
+
+        }
+        static void HaveRead()
+        {
+            Console.Write("Enter Book's ID");
+            int id = int.Parse(Console.ReadLine());
+            var HV = rest.Get<BookInfo>(id, "Method/HaveRead");
+
+        }
+        static void PublishedBooks()
+        {
+
+        }
+        static void DidNotReturned()
+        {
+
+        }
+        static void RentedBy()
+        {
+
+        }
+
         static void Main(string[] args)
         {
 
@@ -174,6 +214,7 @@ namespace RFR340_HFT_2022231.Client
                 .Add("Create", () => Create("Book"))
                 .Add("Delete", () => Delete("Book"))
                 .Add("Update", () => Update("Book"))
+                .Add("Read", () => Read("Book"))
                 .Add("Exit", ConsoleMenu.Close);
 
             var personSubMenu = new ConsoleMenu(args, level: 1)
@@ -197,11 +238,20 @@ namespace RFR340_HFT_2022231.Client
                 .Add("Update", () => Update("Publisher"))
                 .Add("Exit", ConsoleMenu.Close);
 
+            var methodSubMenu = new ConsoleMenu(args, level: 1)
+                .Add("BookReadCounter", () => BookReadCounter())
+                .Add("HaveRead", () => HaveRead())
+                .Add("PublishedBooks", () => PublishedBooks())
+                .Add("DidNotReturned", () => DidNotReturned())
+                .Add("RentedBy", () => RentedBy())
+                .Add("Exit", ConsoleMenu.Close);
+
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Book", () => bookSubMenu.Show())
                 .Add("Person", () => personSubMenu.Show())
                 .Add("Rent", () => rentSubMenu.Show())
                 .Add("Publisher", () => publisherSubMenu.Show())
+                .Add("Method", () => methodSubMenu.Show())
                 .Add("Exit", ConsoleMenu.Close);
 
             menu.Show();

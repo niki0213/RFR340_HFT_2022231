@@ -18,7 +18,7 @@
           "ASPNETCORE_ENVIRONMENT": "Development"
         }
       },
-      "CarShop.Endpoint": {
+      "RFR340_HFT_2022231.Endpoint": {
         "commandName": "Project",
         "dotnetRunMessages": "true",
         "launchBrowser": true,

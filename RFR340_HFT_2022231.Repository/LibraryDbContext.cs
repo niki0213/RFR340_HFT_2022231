@@ -25,11 +25,11 @@ namespace RFR340_HFT_2022231.Repository
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Book>()
+            modelBuilder.Entity<Book>(b => b
                 .HasOne(b => b.Publisher)
                 .WithMany(p => p.Books)
                 .HasForeignKey(b => b.PublisherID)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Cascade));
 
 
             modelBuilder.Entity<Person>()
@@ -50,7 +50,7 @@ namespace RFR340_HFT_2022231.Repository
 
             modelBuilder.Entity<Rent>()
                 .HasOne(r => r.Person)
-                .WithMany(movie => movie.Rent)
+                .WithMany(p => p.Rent)
                 .HasForeignKey(r => r.PersonID)
                 .OnDelete(DeleteBehavior.Cascade);
 

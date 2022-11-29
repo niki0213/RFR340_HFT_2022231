@@ -18,10 +18,12 @@ namespace RFR340_HFT_2022231.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Range(0, 9)]
+
         public int PublisherID { get; set; }
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
+        [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Book> Books { get; set; }
         public Publisher()

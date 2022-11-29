@@ -1,12 +1,13 @@
 ﻿using System;
 using RFR340_HFT_2022231.Models;
+using RFR340_HFT_2022231.Models.DTO;
 using RFR340_HFT_2022231.Repository;
 using RFR340_HFT_2022231.Logic;
 using NUnit.Framework;
 using Moq;
 using System.Collections.Generic;
 using System.Linq;
-using static RFR340_HFT_2022231.Logic.RentLogic;
+
 using static RFR340_HFT_2022231.Logic.BookLogic;
 using System.Threading;
 
@@ -29,6 +30,33 @@ namespace RFR340_HFT_2022231.Test
         public void Init()
         {
             mockRent = new Mock<IRepository<Rent>>();
+            mockBooks = new Mock<IRepository<Book>>();
+            mockPerson = new Mock<IRepository<Person>>();
+            mockPublisher = new Mock<IRepository<Publisher>>();
+            var rent1 = new Rent()
+            {
+                RentID = 101,
+                BookID = 1,
+                PersonID = 11,
+                Start = new DateTime(2022, 11, 1),
+                Back = false
+            };
+            var rent2 = new Rent()
+            {
+                RentID = 101,
+                BookID = 1,
+                PersonID = 11,
+                Start = new DateTime(2022, 11, 1),
+                Back = false
+            };
+            var rent3 = new Rent()
+            {
+                RentID = 101,
+                BookID = 1,
+                PersonID = 11,
+                Start = new DateTime(2022, 11, 1),
+                Back = false
+            };
             mockRent.Setup(r => r.ReadAll()).Returns(new List<Rent>()
             {
                 new Rent()
@@ -274,13 +302,13 @@ namespace RFR340_HFT_2022231.Test
                 new BookInfo()
                 {
                     ID=1,
-                    Title="A"
+                    //Title="A"
 
                 },
                 new BookInfo()
                 {
                     ID=2,
-                    Title="B"
+                    //Title="B"
 
                 },
 

@@ -17,16 +17,20 @@ namespace RFR340_HFT_2022231.Models
         public int RentID { get; set; }
         [Required]
         [Range(1000, 9999)]
+        [ForeignKey(nameof(Book))]
         public int BookID { get; set; }
         [Required]
         [Range(100, 999)]
+        [ForeignKey(nameof(Person))]
         public int PersonID { get; set; }
         [Required]
         public DateTime Start { get; set; }
         [Required]
         public bool Back { get; set; }
+        [NotMapped]
         [JsonIgnore]
         public virtual Book Book { get; set; }
+        [NotMapped]
         [JsonIgnore]
         public virtual Person Person { get; set; }
         public Rent()

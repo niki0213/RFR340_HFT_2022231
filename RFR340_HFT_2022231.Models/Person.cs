@@ -22,8 +22,10 @@ namespace RFR340_HFT_2022231.Models
         public string Name { get; set; }
         [Required]
         public string Phone { get; set; }
+        [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Book> Books { get; set; }
+        [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Rent> Rent { get; set; }
 
