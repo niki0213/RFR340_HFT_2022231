@@ -10,7 +10,6 @@ namespace RFR340_HFT_2022231.Models.DTO
     public class PublisherInfo
     {
         public int ID { get; set; }
-        public string Name { get; set; }
         public int BookCount { get; set; }
         public override bool Equals(object obj)
         {
@@ -27,7 +26,7 @@ namespace RFR340_HFT_2022231.Models.DTO
         } 
         public override int GetHashCode()
             {
-                return HashCode.Combine(this.ID, this.Name, this.BookCount);
+                return HashCode.Combine(this.ID, this.BookCount);
             }
         public override string ToString()
         {

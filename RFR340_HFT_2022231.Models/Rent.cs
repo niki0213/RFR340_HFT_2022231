@@ -24,8 +24,6 @@ namespace RFR340_HFT_2022231.Models
         [ForeignKey(nameof(Person))]
         public int PersonID { get; set; }
         [Required]
-        public DateTime Start { get; set; }
-        [Required]
         public bool Back { get; set; }
         [NotMapped]
         [JsonIgnore]
@@ -44,9 +42,7 @@ namespace RFR340_HFT_2022231.Models
             RentID = int.Parse(t[0]);
             BookID = int.Parse(t[1]);
             PersonID = int.Parse(t[2]);
-            string[] dates = t[3].Split('.');
-            Start = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2]));
-            Back = t[4] == "1";
+            Back = t[3] == "1";
         }
         public override bool Equals(object obj)
         {
@@ -60,14 +56,17 @@ namespace RFR340_HFT_2022231.Models
                 return this.RentID == b.RentID
                     && this.BookID == b.BookID
                     && this.PersonID == b.PersonID
-                    && this.Start == b.Start
                     && this.Back == b.Back;
 
             }
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.PersonID, this.BookID, this.PersonID, this.Start, this.Back);
+            return HashCode.Combine(this.PersonID, this.BookID, this.PersonID, this.Back);
+        }
+        public override string ToString()
+        {
+            return "RentID: "+RentID+"\tBookID: "+BookID+"\tPersonID: "+PersonID+"\t Is it back: "+Back;
         }
     }
 }

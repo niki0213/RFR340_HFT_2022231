@@ -59,5 +59,9 @@ namespace RFR340_HFT_2022231.Models
         {
             return HashCode.Combine(this.PersonID, this.Name, this.Phone);
         }
+        public override string ToString()
+        {
+            return "PersonID: " + PersonID + "\tName: " + Name + "\tPhone number: " + Phone;
+        }
     }
 }

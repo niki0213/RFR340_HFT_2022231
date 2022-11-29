@@ -36,10 +36,7 @@ namespace RFR340_HFT_2022231.Client
                 int book = int.Parse(Console.ReadLine());
                 Console.Write("Enter the PersonID: ");
                 int person = int.Parse(Console.ReadLine());
-                Console.Write("Enter the Rent's date: ");
-                string[] dates = Console.ReadLine().Split('.');
-                DateTime Start = new DateTime(int.Parse(dates[0]), int.Parse(dates[1]), int.Parse(dates[2])); ;
-                rest.Post(new Rent() { RentID=ID, BookID = book, PersonID = person, Start=Start, Back=false }, "rent");
+                rest.Post(new Rent() { RentID=ID, BookID = book, PersonID = person, Back=false }, "rent");
             }
 
             else if (entity == "Publisher")
@@ -67,7 +64,7 @@ namespace RFR340_HFT_2022231.Client
                 List<Book> books = rest.Get<Book>("book");
                 foreach (var item in books)
                 {
-                    Console.WriteLine(item.BookID + " : " + item.Title + ":\t" + item.Author);
+                    Console.WriteLine(item.ToString());
                 }
             }
             else if (entity == "Rent")
@@ -75,7 +72,7 @@ namespace RFR340_HFT_2022231.Client
                 List<Rent> rent = rest.Get<Rent>("rent");
                 foreach (var item in rent)
                 {
-                    Console.WriteLine(item.RentID + " : " + item.BookID + " + " + item.PersonID);
+                    Console.WriteLine(item.ToString());
                 }
             }
             else if (entity == "Person")
@@ -83,7 +80,7 @@ namespace RFR340_HFT_2022231.Client
                 List<Person> rent = rest.Get<Person>("person");
                 foreach (var item in rent)
                 {
-                    Console.WriteLine(item.PersonID + " : " + item.Name);
+                    Console.WriteLine(item.ToString());
                 }
             }
             else if (entity == "Publisher")
@@ -91,7 +88,7 @@ namespace RFR340_HFT_2022231.Client
                 List<Publisher> rent = rest.Get<Publisher>("publisher");
                 foreach (var item in rent)
                 {
-                    Console.WriteLine(item.PublisherID + " : " + item.Name);
+                    Console.WriteLine(item.ToString());
                 }
             }
             Console.ReadLine();
@@ -168,11 +165,32 @@ namespace RFR340_HFT_2022231.Client
         {
             if (entity == "Book")
             {
-                Console.Write("Enter Book's id to delete: ");
+                Console.Write("Enter Book's id to read: ");
                 int id = int.Parse(Console.ReadLine());
                 var item = rest.Get<Book>(id, "book");
-                Console.WriteLine(item.Title);
+                Console.WriteLine(item.ToString());
 
+            }
+            else if (entity == "Rent")
+            {
+                Console.Write("Enter Rent's id to read: ");
+                int id = int.Parse(Console.ReadLine());
+                var item = rest.Get<Rent>(id, "rent");
+                Console.WriteLine(item.ToString());
+            }
+            else if (entity == "Person")
+            {
+                Console.Write("Enter Person's id to read: ");
+                int id = int.Parse(Console.ReadLine());
+                var item = rest.Get<Person>(id, "person");
+                Console.WriteLine(item.ToString());
+            }
+            else if (entity == "Publisher")
+            {
+                Console.Write("Enter Publisher's id to read: ");
+                int id = int.Parse(Console.ReadLine());
+                var item = rest.Get<Publisher>(id, "publisher");
+                Console.WriteLine(item.ToString());
             }
             Console.ReadLine();
 
@@ -249,6 +267,7 @@ namespace RFR340_HFT_2022231.Client
                 .Add("Create", () => Create("Person"))
                 .Add("Delete", () => Delete("Person"))
                 .Add("Update", () => Update("Person"))
+                .Add("Read", () => Read("Person"))
                 .Add("Exit", ConsoleMenu.Close);
 
             var rentSubMenu = new ConsoleMenu(args, level: 1)
@@ -256,6 +275,7 @@ namespace RFR340_HFT_2022231.Client
                 .Add("Create", () => Create("Rent"))
                 .Add("Delete", () => Delete("Rent"))
                 .Add("Update", () => Update("Rent"))
+                .Add("Read", () => Read("Rent"))
                 .Add("Exit", ConsoleMenu.Close);
 
             var publisherSubMenu = new ConsoleMenu(args, level: 1)
@@ -263,6 +283,7 @@ namespace RFR340_HFT_2022231.Client
                 .Add("Create", () => Create("Publisher"))
                 .Add("Delete", () => Delete("Publisher"))
                 .Add("Update", () => Update("Publisher"))
+                .Add("Read", () => Read("Publisher"))
                 .Add("Exit", ConsoleMenu.Close);
 
             var methodSubMenu = new ConsoleMenu(args, level: 1)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -66,6 +67,10 @@ namespace RFR340_HFT_2022231.Models
         public override int GetHashCode()
         {
             return HashCode.Combine(this.BookID, this.Title, this.Author, this.PublisherID);
+        }
+        public override string ToString()
+        {
+            return "BookID: " + BookID + "\tTitle: " + Title + "\tAuthor: " + Author + "\tPublisherId: " +PublisherID;
         }
     }
 }

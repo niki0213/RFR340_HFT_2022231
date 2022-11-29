@@ -54,6 +54,10 @@ namespace RFR340_HFT_2022231.Models
         {
             return HashCode.Combine(this.PublisherID, this.Name);
         }
+        public override string ToString()
+        {
+            return "PublisherID: " + PublisherID + "\tName: " + Name;
+        }
 
     }
 }
