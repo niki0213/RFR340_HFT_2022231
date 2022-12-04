@@ -73,7 +73,6 @@ namespace RFR340_HFT_2022231.Test
                 RentID = 101,
                 BookID = 1,
                 PersonID = 11,
-                Start = new DateTime(2022, 11, 1),
                 Back = false,
                 Person=person1,
                 Book=book1
@@ -83,7 +82,6 @@ namespace RFR340_HFT_2022231.Test
                 RentID = 102,
                 BookID = 2,
                 PersonID = 11,
-                Start = new DateTime(2022, 11, 1),
                 Back = true,
                 Person = person1,
                 Book = book2
@@ -93,7 +91,6 @@ namespace RFR340_HFT_2022231.Test
                 RentID = 103,
                 BookID = 1,
                 PersonID = 12,
-                Start = new DateTime(2022, 11, 1),
                 Back = false,
                 Person = person2,
                 Book = book1
