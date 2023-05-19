@@ -76,7 +76,7 @@ namespace RFR340_HFT_WpfClient
                     books.Update(sBook);
                 });
 
-                sBook = new Book();
+                SBook = new Book();
             }
         }
 

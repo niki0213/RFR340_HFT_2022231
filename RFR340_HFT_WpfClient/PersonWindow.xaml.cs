@@ -10,31 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace RFR340_HFT_WpfClient
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PersonWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PersonWindow : Window
     {
-        public MainWindow()
+        public PersonWindow()
         {
             InitializeComponent();
-        }
-
-        private void Book_Button_Click(object sender, RoutedEventArgs e)
-        {
-            BookWindow bw = new BookWindow();
-            bw.Show();
-        }
-
-        private void Customer_Button_Click(object sender, RoutedEventArgs e)
-        {
-            PersonWindow pw = new PersonWindow();
-            pw.Show();
         }
     }
 }
