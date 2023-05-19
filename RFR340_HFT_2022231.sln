@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{ED07EC
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFR340_HFT_WpfClient", "RFR340_HFT_WpfClient\RFR340_HFT_WpfClient.csproj", "{201B1F73-4C76-4649-A75E-8F02403A8C3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{0284CB2F-3FAF-4A2C-8FA9-E50BA28135FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0284CB2F-3FAF-4A2C-8FA9-E50BA28135FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0284CB2F-3FAF-4A2C-8FA9-E50BA28135FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{201B1F73-4C76-4649-A75E-8F02403A8C3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{201B1F73-4C76-4649-A75E-8F02403A8C3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{201B1F73-4C76-4649-A75E-8F02403A8C3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{201B1F73-4C76-4649-A75E-8F02403A8C3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{B9AA1AFD-571C-425F-9D55-B1B06C323562} = {670E90A1-5D57-41C9-B120-A0AE78405952}
 		{119915FE-9CB6-46E1-8264-368F33F9453E} = {670E90A1-5D57-41C9-B120-A0AE78405952}
 		{0284CB2F-3FAF-4A2C-8FA9-E50BA28135FE} = {670E90A1-5D57-41C9-B120-A0AE78405952}
+		{201B1F73-4C76-4649-A75E-8F02403A8C3A} = {EE20CAFC-D14F-4E13-B9CB-19E8D5184EE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1A0C9CA6-FD1E-493F-87BF-C1483F56EF89}
