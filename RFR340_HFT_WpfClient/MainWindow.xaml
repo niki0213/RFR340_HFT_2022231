@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RFR340_HFT_WpfClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Library" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowViewModel></local:MainWindowViewModel>
+    </Window.DataContext>
     <Grid>
-
+        <StackPanel Background="Lavender">
+            <Label HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" Content="Library Menu"/>
+            <Button Content="Books" Padding="10" Margin="10" FontSize="16" Background="AliceBlue" Click="Button_Click"/>
+            <Button Content="Customers" Padding="10" Margin="10" FontSize="16" Background="AliceBlue"/>
+            <Button Content="Rents" Padding="10" Margin="10" FontSize="16" Background="AliceBlue"/>
+            <Button Content="Publishers" Padding="10" Margin="10" FontSize="16" Background="AliceBlue" />
+            <Button Content="Non Crud" Padding="10" Margin="10" FontSize="16" Background="AliceBlue" />
+        </StackPanel>
     </Grid>
 </Window>

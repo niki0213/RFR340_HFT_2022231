@@ -13,7 +13,6 @@ namespace RFR340_HFT_2022231.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Range(10, 99)]
         public int RentID { get; set; }
         [Required]
         [Range(1000, 9999)]

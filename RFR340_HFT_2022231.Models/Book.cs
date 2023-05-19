@@ -15,7 +15,6 @@ namespace RFR340_HFT_2022231.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Range(1000, 9999)]
         public int BookID { get; set; }
         [Required]
         [StringLength(250)]

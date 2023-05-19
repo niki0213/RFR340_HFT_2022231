@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using RFR340_HFT_2022231.Endpoint.Sevices;
 using RFR340_HFT_2022231.Logic;
 using RFR340_HFT_2022231.Models;
 using RFR340_HFT_2022231.Repository;
@@ -43,6 +44,7 @@ namespace RFR340_HFT_2022231.Endpoint
             services.AddTransient<IPersonLogic, PersonLogic>();
             services.AddTransient<IPublisherLogic, PublisherLogic>();
             services.AddControllers();
+            services.AddSignalR();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RFR340_HFT_2022231.Endpoin", Version = "v1" });
@@ -66,6 +68,7 @@ namespace RFR340_HFT_2022231.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

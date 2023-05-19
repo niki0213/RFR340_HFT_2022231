@@ -14,7 +14,6 @@ namespace RFR340_HFT_2022231.Models
     public class Person
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Range(100, 999)]
         public int PersonID { get; set; }
         [Required]
