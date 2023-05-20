@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using RFR340_HFT_2022231.Endpoint.Sevices;
 using RFR340_HFT_2022231.Logic;
 using RFR340_HFT_2022231.Models;
 using System.Collections.Generic;
@@ -12,9 +14,11 @@ namespace RFR340_HFT_2022231.Endpoint.Controllers
     public class PublisherController : ControllerBase
     {
         IPublisherLogic logic;
-        public PublisherController(IPublisherLogic logic)
+        IHubContext<SignalRHub> hub;
+        public PublisherController(IPublisherLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -33,18 +37,22 @@ namespace RFR340_HFT_2022231.Endpoint.Controllers
         public void Create([FromBody] Publisher value)
         {
             this.logic.Create(value);
+            this.hub.Clients.All.SendAsync("PublisherCreated", value);
         }
 
         [HttpPut]
         public void Update([FromBody] Publisher value)
         {
             this.logic.Update(value);
+            this.hub.Clients.All.SendAsync("PublisherUpdated", value);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var ToDelete = this.logic.Read(id);
             this.logic.Delete(id);
+            this.hub.Clients.All.SendAsync("PublisherDeleted", ToDelete);
         }
     }
 }

@@ -1,0 +1,41 @@
+﻿<Window x:Class="RFR340_HFT_WpfClient.PublisherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RFR340_HFT_WpfClient"
+        mc:Ignorable="d"
+        Title="PublisherWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:PublisherWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Background="PaleGoldenrod" Grid.Column="0" ItemsSource="{Binding publishers}" SelectedItem="{Binding SPublisher}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="ID: "/>
+                            <Label Content="{Binding PublisherID}" Foreground="Black"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Name: "/>
+                            <Label Content="{Binding Name}" Foreground="Black"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1">
+            <Label Content="Name" HorizontalContentAlignment="Center" Background="PaleGoldenrod" Padding="10"/>
+            <TextBox Text="{Binding SPublisher.Name}" Padding="10"/>
+            <Button Content="Create" Command="{Binding CreatePublisherCommand}" Margin="10" Padding="10"/>
+            <Button Content="Delete" Command="{Binding DeletePublisherCommand}" Margin="10" Padding="10"/>
+            <Button Content="Update" Command="{Binding UpdatePublisherCommand}" Margin="10" Padding="10"/>
+        </StackPanel>
+    </Grid>
+</Window>

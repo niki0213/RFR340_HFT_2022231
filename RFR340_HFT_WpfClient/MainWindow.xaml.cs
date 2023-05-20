@@ -36,5 +36,11 @@ namespace RFR340_HFT_WpfClient
             PersonWindow pw = new PersonWindow();
             pw.Show();
         }
+
+        private void Publisher_Button_Click(object sender, RoutedEventArgs e)
+        {
+            PublisherWindow puw = new PublisherWindow();
+            puw.Show();
+        }
     }
 }

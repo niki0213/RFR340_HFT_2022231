@@ -50,9 +50,9 @@ namespace RFR340_HFT_2022231.Endpoint.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var bookToDelete = this.logic.Read(id);
+            var ToDelete = this.logic.Read(id);
             this.logic.Delete(id);
-            this.hub.Clients.All.SendAsync("BookDeleted", bookToDelete);
+            this.hub.Clients.All.SendAsync("BookDeleted", ToDelete);
         }
     }
 }

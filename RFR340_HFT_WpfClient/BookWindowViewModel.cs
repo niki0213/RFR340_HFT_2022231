@@ -64,7 +64,7 @@ namespace RFR340_HFT_WpfClient
 
                 DeleteBookCommand = new RelayCommand(() =>
                 {
-                    books.Delete(sBook.BookID);
+                    books.Delete(SBook.BookID);
                 },
                 () =>
                 {
@@ -73,7 +73,7 @@ namespace RFR340_HFT_WpfClient
                 );
                 UpdateBookCommand = new RelayCommand(() =>
                 {
-                    books.Update(sBook);
+                    books.Update(SBook);
                 });
 
                 SBook = new Book();
