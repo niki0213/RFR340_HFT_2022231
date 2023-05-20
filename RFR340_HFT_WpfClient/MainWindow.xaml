@@ -14,7 +14,7 @@
             <Label HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" Content="Library Menu"/>
             <Button Content="Books" Padding="10" Margin="10" FontSize="16" Background="AliceBlue" Click="Book_Button_Click"/>
             <Button Content="Customers" Padding="10" Margin="10" FontSize="16" Background="AliceBlue" Click="Customer_Button_Click"/>
-            <Button Content="Rents" Padding="10" Margin="10" FontSize="16" Background="AliceBlue"/>
+            <Button Content="Rents" Padding="10" Margin="10" FontSize="16" Background="AliceBlue" Click="Rent_Button_Click"/>
             <Button Content="Publishers" Padding="10" Margin="10" FontSize="16" Background="AliceBlue" Click="Publisher_Button_Click"/>
             <Button Content="Non Crud" Padding="10" Margin="10" FontSize="16" Background="AliceBlue" />
         </StackPanel>

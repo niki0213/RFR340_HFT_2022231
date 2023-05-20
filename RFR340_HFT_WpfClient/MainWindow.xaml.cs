@@ -42,5 +42,10 @@ namespace RFR340_HFT_WpfClient
             PublisherWindow puw = new PublisherWindow();
             puw.Show();
         }
+        private void Rent_Button_Click(object sender, RoutedEventArgs e)
+        {
+            RentWindow rw = new RentWindow();
+            rw.Show();
+        }
     }
 }
