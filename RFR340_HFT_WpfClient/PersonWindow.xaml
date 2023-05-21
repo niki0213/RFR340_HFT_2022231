@@ -31,9 +31,9 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
-            <Label Content="Title" HorizontalContentAlignment="Center" Background="PaleGoldenrod" Padding="10"/>
+            <Label Content="Name" HorizontalContentAlignment="Center" Background="PaleGoldenrod" Padding="10"/>
             <TextBox Text="{Binding SPerson.Name}" Padding="10"/>
-            <Label Content="Author" HorizontalContentAlignment="Center" Background="PaleGoldenrod" Padding="10"/>
+            <Label Content="Phonenumber" HorizontalContentAlignment="Center" Background="PaleGoldenrod" Padding="10"/>
             <TextBox Text="{Binding SPerson.Phone}" Padding="10" />
             <Button Content="Create" Command="{Binding CreatePersonCommand}" Margin="10" Padding="10"/>
             <Button Content="Delete" Command="{Binding DeletePersonCommand}" Margin="10" Padding="10"/>

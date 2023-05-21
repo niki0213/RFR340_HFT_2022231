@@ -58,27 +58,27 @@ namespace RFR340_HFT_2022231.Repository
 
             modelBuilder.Entity<Book>().HasData(new Book[]
                     {
-                         new Book("1001#Harry Potter and the Philosopher's Stone#J. K. Rowling#1"),
-                         new Book("1002#Harry Potter and the Chamber of Secrets#J. K. Rowling#1"),
-                         new Book("1003#Harry Potter and the Prisoner of Azkaban#J. K. Rowling#1"),
-                         new Book("1004#Harry Potter and the Goblet of Fire #J. K. Rowling#1"),
-                         new Book("1005#Harry Potter and the Order of the Phoenix #J. K. Rowling#1"),
-                         new Book("1006#Harry Potter and the Goblet of Fire #J. K. Rowling#1"),
-                         new Book("1007#Harry Potter and the Half-Blood Prince#J. K. Rowling#1"),
-                         new Book("1008#Harry Potter and the Deathly Hallows #J. K. Rowling#1"),
-                         new Book("1009#Twilight #Stephenie Meyer#2"),
-                         new Book("1010#New Moon#Stephenie Meyer#2"),
-                         new Book("1011#Eclipse#Stephenie Meyer#2"),
-                         new Book("1012#Breaking Dawn#Stephenie Meyer#2"),
+                         new Book("1#Harry Potter and the Philosopher's Stone#J. K. Rowling#1"),
+                         new Book("2#Harry Potter and the Chamber of Secrets#J. K. Rowling#1"),
+                         new Book("3#Harry Potter and the Prisoner of Azkaban#J. K. Rowling#1"),
+                         new Book("4#Harry Potter and the Goblet of Fire #J. K. Rowling#1"),
+                         new Book("5#Harry Potter and the Order of the Phoenix #J. K. Rowling#1"),
+                         new Book("6#Harry Potter and the Goblet of Fire #J. K. Rowling#1"),
+                         new Book("7#Harry Potter and the Half-Blood Prince#J. K. Rowling#1"),
+                         new Book("8#Harry Potter and the Deathly Hallows #J. K. Rowling#1"),
+                         new Book("9#Twilight #Stephenie Meyer#2"),
+                         new Book("10#New Moon#Stephenie Meyer#2"),
+                         new Book("11#Eclipse#Stephenie Meyer#2"),
+                         new Book("12#Breaking Dawn#Stephenie Meyer#2"),
                     }
                 );
             modelBuilder.Entity<Person>().HasData(new Person[]
                     {
-                        new Person("101#Robbie Miller#3645718270"),
-                        new Person("102#Camilla Donata#3647584920"),
-                        new Person("104#Kevin Mahaut#3682936152"),
-                        new Person("105#Dalma Wibke#3637458265"),
-                        new Person("106#Henri Suse#3682951536")
+                        new Person("1#Robbie Miller#3645718270"),
+                        new Person("2#Camilla Donata#3647584920"),
+                        new Person("3#Kevin Mahaut#3682936152"),
+                        new Person("4#Dalma Wibke#3637458265"),
+                        new Person("5#Henri Suse#3682951536")
                     }
                 );
             modelBuilder.Entity<Publisher>().HasData(new Publisher[]
@@ -89,16 +89,16 @@ namespace RFR340_HFT_2022231.Repository
                 );
             modelBuilder.Entity<Rent>().HasData(new Rent[]
                     {
-                        new Rent("11#1008#102#1"),
-                        new Rent("12#1001#101#1"),
-                        new Rent("13#1003#104#0"),
-                        new Rent("14#1007#105#1"),
-                        new Rent("15#1008#104#0"),
-                        new Rent("16#1001#102#1"),
-                        new Rent("17#1004#100#1"),
-                        new Rent("18#1009#104#0"),
-                        new Rent("19#1007#102#1"),
-                        new Rent("20#1003#106#0")
+                        new Rent("1#8#2#1"),
+                        new Rent("2#1#1#1"),
+                        new Rent("3#3#4#0"),
+                        new Rent("4#7#5#1"),
+                        new Rent("5#8#4#0"),
+                        new Rent("6#1#2#1"),
+                        new Rent("7#4#3#1"),
+                        new Rent("8#9#4#0"),
+                        new Rent("9#7#2#1"),
+                        new Rent("10#3#6#0")
 
                     }
                 );

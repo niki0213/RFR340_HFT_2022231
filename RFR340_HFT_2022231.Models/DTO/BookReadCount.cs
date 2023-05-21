@@ -21,7 +21,6 @@ namespace RFR340_HFT_2022231.Models.DTO
             else
             {
                 return this.Id == b.Id
-                    && this.Title == b.Title
                     && this.Count == b.Count;
             }
         }

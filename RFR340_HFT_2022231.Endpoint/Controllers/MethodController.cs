@@ -11,34 +11,41 @@ namespace RFR340_HFT_2022231.Endpoint.Controllers
     [ApiController]
     public class MethodController : ControllerBase
     {
-        IRentLogic logic;
+        IRentLogic rentlogic;
+        IBookLogic booklogic;
 
-        public MethodController(IRentLogic logic)
+        public MethodController(IRentLogic rentLogic, IBookLogic booklogic)
         {
-            this.logic = logic;
+            this.rentlogic = rentLogic;
+            this.booklogic = booklogic;
         }
 
         [HttpGet]
         public IEnumerable<BookReadCount> BookReadCounter()
         {
-            return this.logic.BookReadCounter();
+            return this.rentlogic.BookReadCounter();
         }
         [HttpGet]
         public IEnumerable<BookInfo> HaveRead([FromQuery] int id)
         {
-            return this.logic.HaveRead(id);
+            return this.rentlogic.HaveRead(id);
         }
 
         [HttpGet]
         public IEnumerable<NotReturned> DidNotReturned()
         {
-            return this.logic.DidNotReturned();
+            return this.rentlogic.DidNotReturned();
         }
 
         [HttpGet]
         public IEnumerable<RentedIt> RentedBy([FromQuery] int id)
         {
-            return this.logic.RentedBy(id);
+            return this.rentlogic.RentedBy(id);
+        }
+        [HttpGet]
+        public IEnumerable<PublisherInfo> PublishedBooks()
+        {
+            return this.booklogic.PublishedBooks();
         }
     }
 }

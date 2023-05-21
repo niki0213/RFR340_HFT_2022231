@@ -47,5 +47,10 @@ namespace RFR340_HFT_WpfClient
             RentWindow rw = new RentWindow();
             rw.Show();
         }
+        private void NonCrud_Button_Click(object sender, RoutedEventArgs e)
+        {
+            NonCrudWindow nc = new NonCrudWindow();
+            nc.Show();
+        }
     }
 }
