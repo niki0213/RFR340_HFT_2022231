@@ -3,8 +3,65 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <link rel="stylesheet" href="person.css" />
 </head>
 <body>
+    <h1>Person Catalog</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Add</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+
+                    <div>
+                        <label>Name:</label>
+                        <input type="text" id="name" />
+                    </div>
+                    <div>
+                        <label>Phone:</label>
+                        <input type="text" id="phone" />
+                    </div>
+                    <button type="button" onclick="create()">Add Person</button>
+                </td>
+                <td>
+                    <div id="updatediv">
+                        <div>
+                            <label>Name:</label>
+                            <input type="text" id="nameu" />
+                        </div>
+                        <div>
+                            <label>Phone:</label>
+                            <input type="text" id="phoneu" />
+                        </div>
+                        <button type="button" onclick="update()">Update Person</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="personscript.js"></script>
 
 </body>
 </html>
