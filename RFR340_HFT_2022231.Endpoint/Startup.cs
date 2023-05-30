@@ -61,6 +61,11 @@ namespace RFR340_HFT_2022231.Endpoint
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RFR340_HFT_2022231.Endpoint v1"));
             }
 
+            app.UseCors(x => x.AllowCredentials()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .WithOrigins("http://localhost:20580"));
+
             app.UseRouting();
 
             app.UseAuthorization();

@@ -1,0 +1,16 @@
+﻿body {
+}
+table{
+    width: 50%;
+    
+}
+table, th, td {
+   border: 1px solid black;
+}
+table button {
+    padding: 2px;
+}
+h1{
+    font-size:large;
+}
+

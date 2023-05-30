@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Book</title>
+    <link rel="stylesheet" href="bookstyle.css" />
+</head>
+<body>
+    <h1>Book Catalog</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Add</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+
+                    <div>
+                        <label>Book title:</label>
+                        <input type="text" id="booktitle" />
+                    </div>
+                    <div>
+                        <label>Author:</label>
+                        <input type="text" id="bookauthor" />
+                    </div>
+                    <div>
+                        <label>PublisherID:</label>
+                        <input type="text" id="publisherid" />
+                    </div>
+                    <button type="button" onclick="create()">Add Book</button>
+                </td>
+                <td>
+                    <div id="updatediv">
+                        <div>
+                            <label>Title</label>
+                            <input type="text" id="titleupdate" />
+                        </div>
+                        <div>
+                            <label>Author</label>
+                            <input type="text" id="authorupdate" />
+                        </div>
+                        <div>
+                            <label>Publisher</label>
+                            <input type="text" id="publisherupdate" />
+                        </div>
+                        <button type="button" onclick="update()">Update Book</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="resultarea">
+    </tbody>
+</table>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+<script src="bookscript.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RFR340_HFT_2022231.Test": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:55917;http://localhost:55918"
+    }
+  }
+}
