@@ -9,7 +9,6 @@ namespace RFR340_HFT_2022231.Models.DTO
     public class BookReadCount
     {
         public int Id { get; set; }
-        public string Title { get; set; }
         public int Count { get; set; }
         public override bool Equals(object obj)
         {
@@ -26,11 +25,11 @@ namespace RFR340_HFT_2022231.Models.DTO
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.Id, this.Title, this.Count);
+            return HashCode.Combine(this.Id, this.Count);
         }
         public override string ToString()
         {
-            return "ID: "+Id+"\tTitle: "+Title+"\tCount: "+Count;
+            return "ID: "+Id+"\tCount: "+Count;
         }
     }
 }
