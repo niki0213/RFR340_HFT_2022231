@@ -2,9 +2,55 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Publisher</title>
+    <link rel="stylesheet" href="publisherstyle.css" />
 </head>
 <body>
+    <h1>Publisher Catalog</h1>
 
+    <table>
+        <thead>
+            <tr>
+                <th>Add</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+
+                    <div>
+                        <label>Name:</label>
+                        <input type="text" id="name" />
+                    </div>
+                    <button type="button" onclick="create()">Add Publisher</button>
+                </td>
+                <td>
+                    <div id="updatediv">
+                        <div>
+                            <label>Name:</label>
+                            <input type="text" id="nameu" />
+                        </div>
+                        <button type="button" onclick="update()">Update Publisher</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="publisherscript.js"></script>
 </body>
 </html>
